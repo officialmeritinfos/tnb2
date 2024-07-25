@@ -7,6 +7,7 @@ use App\Http\Controllers\User\Investments;
 use App\Http\Controllers\User\ManagedAccounts;
 use App\Http\Controllers\User\Referrals;
 use App\Http\Controllers\User\Settings;
+use App\Http\Controllers\User\SwapController;
 use App\Http\Controllers\User\Transfers;
 use App\Http\Controllers\User\Withdrawals;
 use App\Models\Withdrawal;
@@ -106,5 +107,8 @@ Route::get('subtrade/{id}/delete',[ManagedAccounts::class,'delete'])->name('subt
 /*================ TRANSFERS ROUTE ====================*/
 Route::get('transfer',[Transfers::class,'landingPage'])->name('transfer.index');
 Route::post('transfer/new',[Transfers::class,'newTransfer'])->name('transfer.new');
+/*================ SWAP ROUTE ====================*/
+Route::get('swp',[SwapController::class,'landingPage'])->name('swap.index');
+Route::post('swap/new',[SwapController::class,'processSwap'])->name('swap.new');
 
 Route::get('logout',[Login::class,'logout']);

@@ -137,6 +137,13 @@
             </li>
 
             <li>
+                <a href="{{route('swap.index')}}" class="box-style">
+                    <i class="bx bx-refresh"></i>
+                    <span class="menu-title">Swap Crypto</span>
+                </a>
+            </li>
+
+            <li>
                 <a href="{{route('transfer.index')}}" class="box-style">
                     <i class="bx bx-send"></i>
                     <span class="menu-title">Transfer Funds </span>
@@ -355,7 +362,6 @@
     new ClipboardJS('.copy');
 </script>
 @stack('js')
-<script src="//code.jivosite.com/widget/5mlmgmHz2y" async></script>
 
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 namespace App\Defaults;
 
+use App\Models\Asset;
 use App\Models\InvestmentReturn;
 use App\Models\ReturnType;
 use App\Models\Service;
@@ -67,5 +68,11 @@ class Custom{
     public function getSectors()
     {
         return Service::where('status',1)->where('isSector',1)->get();
+    }
+
+    //fetch asset from code
+    public function fetchAssetFromCode($code)
+    {
+        return Asset::where('code',$code)->first();
     }
 }
