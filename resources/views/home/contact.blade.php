@@ -1,23 +1,35 @@
 @extends('home.base')
 @section('content')
-    <!-- Page Banner Area Start -->
-    <div class="page__banner" data-background="{{asset('home/img/pages/page-banner.jpg')}}">
+
+    <!-- Page Banner Area End -->
+    <section class="page-banner pt-xs-60 pt-sm-80 overflow-hidden">
         <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="page__banner-content">
-                        <span>{{$pageName}}</span>
-                        <ul>
-                            <li><a href="{{url('/')}}">Home</a><span>|</span></li>
-                            <li>{{$pageName}}</li>
-                        </ul>
-                        <h1>{{$pageName}}</h1>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="page-banner__content mb-xs-10 mb-sm-15 mb-md-15 mb-20">
+                        <div class="transparent-text">{{$pageName}}</div>
+                        <div class="page-title">
+                            <h1>{{$pageName}}</h1>
+                        </div>
+                    </div>
+
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{$pageName}}</li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="page-banner__media mt-xs-30 mt-sm-40">
+                        <img src="{{asset('home/img/page-banner/page-banner-start.svg')}}" class="img-fluid start" alt="">
+                        <img src="{{asset('home/img/page-banner/page-banner.jpg')}}" class="img-fluid" alt="">
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Page Banner Area End -->
+    </section>
 
     <!-- Business One -->
     <div class="contact__three pb-0 section-padding">
