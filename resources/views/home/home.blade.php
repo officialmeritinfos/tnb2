@@ -201,7 +201,7 @@
                 <div class="col-xl-6">
                     <div class="why-choose__media-wrapper d-flex flex-column">
                         <div class="video-play-btn">
-                            <a href="#" class="popup-video" data-effect="mfp-move-from-top">
+                            <a href="https://www.youtube.com/watch?v=1YyAzVmP9xQ" class="popup-video" data-effect="mfp-move-from-top">
                                 <i class="icon-play"></i></a>
                         </div>
 
@@ -368,7 +368,7 @@
     <!-- company-skill start -->
     <section class="company-skill company-skill-home-3 pb-xs-80 pt-xs-80 pt-sm-100 pb-sm-100 pt-md-100 pb-md-100 pt-120 pb-90 overflow-hidden">
         <div class="container">
-            <a href="#" class="popup-video" data-effect="mfp-move-from-top"><i class="icon-play"></i></a>
+            <a href="https://www.youtube.com/watch?v=1YyAzVmP9xQ" class="popup-video" data-effect="mfp-move-from-top"><i class="icon-play"></i></a>
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
                     <div class="our-company__meida">
