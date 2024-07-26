@@ -20,7 +20,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         //$schedule->command('check:deposit')->hourly()->withoutOverlapping();
         $schedule->command('investment:return')->everyMinute()->withoutOverlapping();
-        $schedule->command('fetch:cryptoRate')->everyMinute()->withoutOverlapping();
+        $schedule->command('fetch:cryptoRate')->everySixHours()->withoutOverlapping();
     }
 
     /**
