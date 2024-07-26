@@ -100,6 +100,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-12p col-md-12 p-0 mt-5">
+                    <img src="{{asset('certificate.jpg')}}"/>
+                </div>
             </div>
         </div>
     </section>
