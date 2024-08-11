@@ -15,7 +15,7 @@
   --l3-primary-rgb:255, 201, 0;
   --l4-primary:#4B2AAD;
   --l4-primary-rgb:75, 42, 173;
-  --l5-primary:#FF9966;
+  --l5-primary:#0096FF;
   --l5-primary-rgb:255, 153, 102;
   --l5-secondary:#1B1C1D;
   --l5-secondary-rgb:27, 28, 29;
@@ -3193,7 +3193,7 @@ h1, h2, h3, h4, h5, h6 {
   --backgroundColor: rgba(253, 251, 249, 0.1);
   --border-color: rgba(255, 255, 255, 0);
   --color: #FFFFFF;
-  --hovBackground: #FF9966;
+  --hovBackground: #0096FF;
   --hovColor: var(--black-2);
 }
 
@@ -4327,7 +4327,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 .process-widget-row .process-widget__count:hover {
-  background: #FF9966;
+  background: #0096FF;
 }
 .process-widget-row .process-widget__title {
   font-weight: 600;
@@ -4612,7 +4612,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 .service-widget__link:hover {
-  color: #FF9966 !important;
+  color: #0096FF !important;
 }
 .service-widget.hover-enable:hover {
   background: #FAF9F5;
@@ -7003,9 +7003,9 @@ div#loading img {
 }
 
 .btn-primary-l05 {
-  --btn-bg: #FF9966;
+  --btn-bg: #0096FF;
   --btn-color: #1B1C1D;
-  --btn-border-color:#FF9966;
+  --btn-border-color:#0096FF;
   --btn-hover-bg: #0A102F;
   --btn-hover-color: #FFFFFF;
   --btn-hover-border-color: #0A102F;
@@ -7018,9 +7018,9 @@ div#loading img {
   --btn-bg: #1B1C1D;
   --btn-color: #fff;
   --btn-border-color:#1B1C1D;
-  --btn-hover-bg: #FF9966;
+  --btn-hover-bg: #0096FF;
   --btn-hover-color: #1B1C1D;
-  --btn-hover-border-color: #FF9966;
+  --btn-hover-border-color: #0096FF;
   --btn-fill-bg: #fff;
   --btn-fill-color: $black;
   --btn-fill-border-color:#fff;
@@ -7646,7 +7646,7 @@ div#loading img {
   right: auto;
   width: 35px;
   height: 35px;
-  background: #FF9966;
+  background: #0096FF;
   border-radius: 500px;
   transition: 0.4s;
 }
@@ -9759,7 +9759,7 @@ div#loading img {
   row-gap: 5px;
 }
 .home-5_content-section-1 .content__stats-block .stat-single__count {
-  color: #FF9966;
+  color: #0096FF;
   font-size: 32px;
   font-weight: 600;
   line-height: 0.94;
@@ -10083,7 +10083,7 @@ div#loading img {
   background: #1B1C1D;
 }
 .cta-home-5 .cta-home-5-wrapper {
-  background-color: #FF9966;
+  background-color: #0096FF;
   border-radius: 5px;
   padding: 30px;
 }

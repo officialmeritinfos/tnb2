@@ -1,35 +1,24 @@
 @extends('home.base')
 @section('content')
 
-    <!-- Page Banner Area End -->
-    <section class="page-banner pt-xs-60 pt-sm-80 overflow-hidden">
+    <div class="inner_banner-section">
+        <img class="inner_banner-background-image" src="{{asset('home/image/common/inner-bg.png')}}" alt="image alt">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <div class="page-banner__content mb-xs-10 mb-sm-15 mb-md-15 mb-20">
-                        <div class="transparent-text">{{$pageName}}</div>
-                        <div class="page-title">
-                            <h1>{{$pageName}}</h1>
-                        </div>
-                    </div>
-
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{$pageName}}</li>
-                        </ol>
-                    </nav>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="page-banner__media mt-xs-30 mt-sm-40">
-                        <img src="{{asset('home/img/page-banner/page-banner-start.svg')}}" class="img-fluid start" alt="">
-                        <img src="{{asset('home/img/page-banner/page-banner.jpg')}}" class="img-fluid" alt="">
-                    </div>
-                </div>
+            <div class="inner_banner-content-block">
+                <h3 class="inner_banner-title">{{$pageName}}</h3>
+                <ul class="banner__page-navigator">
+                    <li>
+                        <a href="{{url('/')}}">Home</a>
+                    </li>
+                    <li class="active">
+                        <a href="{{url()->current()}}">
+                            {{$pageName}}
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
 
 
     <!--About One Start-->
