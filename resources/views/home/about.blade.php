@@ -48,6 +48,10 @@
                                 Throughout our existence, we've aimed to balance lower risk and higher profits for our customers through innovative analysis, information dispersion, and expert assistance. Our team includes experienced professionals with diverse and in-depth knowledge, enhancing the entire investing process.
                             </p>
                             <div class="content-divider"></div>
+
+                            <div class="mt-3">
+                                <img src="{{asset('certificate.jpg')}}">
+                            </div>
                         </div>
                     </div>
                 </div>
