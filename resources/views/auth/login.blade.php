@@ -1,143 +1,165 @@
+
 <!doctype html>
-<html lang="zxx">
+
+<html
+    lang="en"
+    class="light-style layout-wide customizer-hide"
+    dir="ltr"
+    data-theme="theme-default"
+    data-assets-path="{{asset('dashboard/user/')}}/"
+    data-template="horizontal-menu-template"
+    data-style="light">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <!-- Bootstrap Min CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/bootstrap.min.css')}}">
-    <!-- Owl Theme Default Min CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/owl.theme.default.min.css')}}">
-    <!-- Owl Carousel Min CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/owl.carousel.min.css')}}">
-    <!-- Animate Min CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/animate.min.css')}}">
-    <!-- Remixicon CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/remixicon.css')}}">
-    <!-- boxicons CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/boxicons.min.css')}}">
-    <!-- MetisMenu Min CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/metismenu.min.css')}}">
-    <!-- Simplebar Min CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/simplebar.min.css')}}">
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/style.css')}}">
-    <!-- Dark Mode CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/dark-mode.css')}}">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/responsive.css')}}">
-
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{asset('home/images/'.$web->logo)}}">
     <title>{{$pageName}} - {{$siteName}}</title>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
+        rel="stylesheet" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="{{asset('dashboard/user/vendor/fonts/fontawesome.css')}}" />
+    <link rel="stylesheet" href="{{asset('dashboard/user/vendor/fonts/tabler-icons.css')}}" />
+    <link rel="stylesheet" href="{{asset('dashboard/user/vendor/fonts/flag-icons.css')}}" />
+
+    <!-- Core CSS -->
+
+    <link rel="stylesheet" href="{{asset('dashboard/user/vendor/css/rtl/core.css')}}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{asset('dashboard/user/vendor/css/rtl/theme-default.css')}}" class="template-customizer-theme-css" />
+
+    <link rel="stylesheet" href="{{asset('dashboard/user/css/demo.css')}}" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="{{asset('dashboard/user/vendor/libs/node-waves/node-waves.css')}}" />
+
+    <link rel="stylesheet" href="{{asset('dashboard/user/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
+    <link rel="stylesheet" href="{{asset('dashboard/user/vendor/libs/typeahead-js/typeahead.css')}}" />
+    <!-- Vendor -->
+    <link rel="stylesheet" href="{{asset('dashboard/user/vendor/libs/@form-validation/form-validation.css')}}" />
+
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="{{asset('dashboard/user/vendor/css/pages/page-auth.css')}}" />
+
+    <!-- Helpers -->
+    <script src="{{asset('dashboard/user/vendor/js/helpers.js')}}"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js')}} in the <head> section -->
+
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js')}}.  -->
+    <script src="{{asset('dashboard/user/vendor/js/template-customizer.js')}}"></script>
+
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{{asset('dashboard/user/js/config.js')}}"></script>
 </head>
 
-<body class="body-bg-f5f5f5">
-<!-- Start Preloader Area -->
-<div class="preloader">
-    <div class="content">
-        <div class="box"></div>
-    </div>
-</div>
-<!-- End Preloader Area -->
+<body>
+<!-- Content -->
 
-<!-- Start User Area -->
-<section class="user-area">
-    <div class="container">
-        <div class="user-form-content">
-            <h3>Login</h3>
-            <p>Sign In to continue to {{$siteName}}.</p>
+<div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner py-6">
+            <!-- Login -->
+            <div class="card">
+                <div class="card-body">
+                    <!-- Logo -->
+                    <div class="app-brand justify-content-center mb-6">
+                        <a href="{{url('/')}}" class="app-brand-link">
+                            <img src="{{asset('home/images/'.$web->logo)}}" style="width: 150px;">
+                        </a>
+                    </div>
+                    <!-- /Logo -->
+                    <h4 class="mb-1">Welcome Back! 👋</h4>
+                    <p class="mb-6">Please sign-in to your account</p>
 
-            <form class="user-form" method="post" action="{{route('auth.login')}}">
-                @include('templates.notification')
-                @csrf
-                <div class="row">
-
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label>Username</label>
-                            <input class="form-control" type="text" placeholder="Enter your username"
-                                   name="email" value="{{old('email')}}"/>
+                    <form id="formAuthentication" class="mb-4" method="post" action="{{route('auth.login')}}">
+                        @include('templates.notification')
+                        @csrf
+                        <div class="mb-6">
+                            <label for="email" class="form-label">Username</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter your username"
+                                name="email" value="{{old('email')}}"
+                                autofocus />
                         </div>
-                    </div>
-
-
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input class="form-control" type="password" name="password"
-                                   placeholder="Enter your password">
+                        <div class="mb-6 form-password-toggle">
+                            <label class="form-label" for="password">Password</label>
+                            <div class="input-group input-group-merge">
+                                <input
+                                    type="password"
+                                    id="password"
+                                    class="form-control"
+                                    name="password"
+                                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                    aria-describedby="password" />
+                                <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="login-action">
-
-
-                            <span class="forgot-login">
-										<a href="{{route('forgotPassword')}}">Forgot your password?</a>
-									</span>
+                        <div class="my-8">
+                            <div class="d-flex justify-content-between">
+                                <div class="form-check mb-0 ms-2">
+                                    <input class="form-check-input" type="checkbox" id="remember-me" />
+                                    <label class="form-check-label" for="remember-me"> Remember Me </label>
+                                </div>
+                                <a href="{{route('forgotPassword')}}">
+                                    <p class="mb-0">Forgot Password?</p>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                        <div class="mb-6">
+                            <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
+                        </div>
+                    </form>
 
-                    <div class="col-12">
-                        <button class="default-btn register" type="submit">
-                            Login
-                        </button>
-                    </div>
+                    <p class="text-center">
+                        <span>New on our platform?</span>
+                        <a href="{{route('register')}}">
+                            <span>Create an account</span>
+                        </a>
+                    </p>
 
-
-
-                    <div class="col-12">
-                        <p class="create">Don’t have an account? <a href="{{route('register')}}">Sign up</a></p>
-                    </div>
                 </div>
-            </form>
+            </div>
+            <!-- /Register -->
         </div>
     </div>
-</section>
-<!-- End User Area -->
-
-<div class="dark-bar">
-    <a href="#" class="d-flex align-items-center">
-        <span class="dark-title">Enable Dark Theme</span>
-    </a>
-
-    <div class="form-check form-switch">
-        <input type="checkbox" class="checkbox" id="darkSwitch">
-    </div>
 </div>
 
-<!-- Start Go Top Area -->
-<div class="go-top">
-    <i class="ri-arrow-up-s-fill"></i>
-    <i class="ri-arrow-up-s-fill"></i>
-</div>
-<!-- End Go Top Area -->
+<!-- / Content -->
 
-<!-- Jquery Min JS -->
-<script src="{{asset('dashboard/user/js/jquery.min.js')}}"></script>
-<!-- Bootstrap Bundle Min JS -->
-<script src="{{asset('dashboard/user/js/bootstrap.bundle.min.js')}}"></script>
-<!-- Owl Carousel Min JS -->
-<script src="{{asset('dashboard/user/js/owl.carousel.min.js')}}"></script>
-<!-- Metismenu Min JS -->
-<script src="{{asset('dashboard/user/js/metismenu.min.js')}}"></script>
-<!-- Simplebar Min JS -->
-<script src="{{asset('dashboard/user/js/simplebar.min.js')}}"></script>
-<!-- mixitup Min JS -->
-<script src="{{asset('dashboard/user/js/mixitup.min.js')}}"></script>
-<!-- Dark Mode Switch Min JS -->
-<script src="{{asset('dashboard/user/js/dark-mode-switch.min.js')}}"></script>
-<!-- Form Validator Min JS -->
-<script src="{{asset('dashboard/user/js/form-validator.min.js')}}"></script>
-<!-- Contact JS -->
-<script src="{{asset('dashboard/user/js/contact-form-script.js')}}"></script>
-<!-- Ajaxchimp Min JS -->
-<script src="{{asset('dashboard/user/js/ajaxchimp.min.js')}}"></script>
-<!-- Custom JS -->
-<script src="{{asset('dashboard/user/js/custom.js')}}"></script>
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js')}} -->
+
+<script src="{{asset('dashboard/user/vendor/libs/jquery/jquery.js')}}"></script>
+<script src="{{asset('dashboard/user/vendor/libs/popper/popper.js')}}"></script>
+<script src="{{asset('dashboard/user/vendor/js/bootstrap.js')}}"></script>
+<script src="{{asset('dashboard/user/vendor/libs/node-waves/node-waves.js')}}"></script>
+<script src="{{asset('dashboard/user/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+<script src="{{asset('dashboard/user/vendor/libs/hammer/hammer.js')}}"></script>
+<script src="{{asset('dashboard/user/vendor/libs/i18n/i18n.js')}}"></script>
+<script src="{{asset('dashboard/user/vendor/libs/typeahead-js/typeahead.js')}}"></script>
+<script src="{{asset('dashboard/user/vendor/js/menu.js')}}"></script>
+
+<!-- endbuild -->
+
+<!-- Vendors JS -->
+<script src="{{asset('dashboard/user/vendor/libs/@form-validation/popular.js')}}"></script>
+<script src="{{asset('dashboard/user/vendor/libs/@form-validation/bootstrap5.js')}}"></script>
+<script src="{{asset('dashboard/user/vendor/libs/@form-validation/auto-focus.js')}}"></script>
+
+<!-- Main JS -->
+<script src="{{asset('dashboard/user/js/main.js')}}"></script>
+
+<!-- Page JS -->
 </body>
 </html>
