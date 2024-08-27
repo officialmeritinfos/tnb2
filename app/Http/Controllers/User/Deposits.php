@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Notifications\InvestmentMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class Deposits extends Controller
@@ -80,26 +81,26 @@ class Deposits extends Controller
         switch ($web->paymentMethod){
             case 1:
                 $dataInvoice =[
-                    'name'=>'Account Funding',
+                    'order_name'=>'Account Funding',
                     'description'=>'Account Funding by '.$user->name,
-                    'amount'=>$input['amount'],
-                    'payerName'=>$user->name,
+                    'source_amount'=>$input['amount'],
                     'email'=>$user->email,
-                    'asset'=>$input['asset'],
-                    'fiat'=>'USD','customId'=>$reference
+                    'currency'=>$input['asset'],
+                    'source_currency'=>'USD','order_number'=>$reference
                 ];
                 $result= $this->createInvoice($dataInvoice);
                 $response = $result->json();
                 if ($result->successful()){
-                    $address=$response['data']['address'];
+                    $address=$response['data']['wallet_hash'];
                     $dataDeposit =[
                         'user'=>$user->id,'reference'=>$reference,'amount'=>$input['amount'],
-                        'cryptoAmount'=>$response['data']['cryptoAmount'],'asset'=>$input['asset'],
-                        'details'=>$response['data']['address'],'paymentRef'=>$response['data']['reference'],
+                        'cryptoAmount'=>$response['data']['invoice_total_sum'],'asset'=>$input['asset'],
+                        'details'=>$address,'paymentRef'=>$response['data']['txn_id'],
                         'paymentMethod'=>1,'methodType'=>1
                     ];
                 }else{
-                    return back()->with('error',$response['data']['error']);
+                    Log::info($response);
+                    return back()->with('error','An error occurred at our processor end - please contact our support or try again with another asset.');
                 }
                 break;
             default:

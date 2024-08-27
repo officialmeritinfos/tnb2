@@ -18,9 +18,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        //$schedule->command('check:deposit')->hourly()->withoutOverlapping();
-        $schedule->command('investment:return')->everyMinute()->withoutOverlapping();
-        $schedule->command('fetch:cryptoRate')->everySixHours()->withoutOverlapping();
+        $schedule->command('check:deposit')->everyMinute()->withoutOverlapping();
+//        $schedule->command('investment:return')->everyMinute()->withoutOverlapping();
+//        $schedule->command('fetch:cryptoRate')->everySixHours()->withoutOverlapping();
     }
 
     /**

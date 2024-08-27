@@ -26,11 +26,13 @@
                             <ul class="list-unstyled">
                                 <li class="text-muted">To: <span style="color:#5d9fc5 ;">{{$user->name}}</span></li>
                                 <li class="text-muted">{{$web->address}}</li>
-                                <li class="text-muted"><i class="fas fa-phone"></i> {{$web->phone}}</li>
+                                @if(!empty($web->phone))
+                                    <li class="text-muted"><i class="fas fa-phone"></i> {{$web->phone}}</li>
+                                @endif
                             </ul>
                         </div>
                         <div class="col-xl-4">
-                            <p class="text-muted">Invoice</p>
+                            <p class="text-muted">Deposit</p>
                             <ul class="list-unstyled">
                                 <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
                                         class="fw-bold">ID:</span>#{{$deposit->reference}}</li>
@@ -40,16 +42,16 @@
                                     <span class="me-1 fw-bold">Status:</span>
                                     @switch($deposit->status)
                                         @case(1)
-                                        <span class="badge badge-success">Completed</span>
+                                        <span class="badge bg-success">Completed</span>
                                         @break
                                         @case(2)
-                                        <span class="badge badge-info">Pending</span>
+                                        <span class="badge bg-info">Pending</span>
                                         @break
                                         @case(3)
-                                        <span class="badge badge-danger">Cancelled</span>
+                                        <span class="badge bg-danger">Cancelled</span>
                                         @break
                                         @default
-                                        <span class="badge badge-dark">Partial Payment</span>
+                                        <span class="badge bg-dark">Partial Payment</span>
                                         @break
                                     @endswitch
                                 </li>

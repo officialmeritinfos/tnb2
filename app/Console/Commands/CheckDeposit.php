@@ -55,7 +55,8 @@ class CheckDeposit extends Command
                 if ($result->ok()){
                     $response = $result->json();
                     $status = $response['data']['status'];
-                    if (strtolower($status) =='paid'){
+                    Log::info($response);
+                    if (strtolower($status) =='completed'){
                         $user = User::where('id',$deposit->user)->first();
 
                         $data=[
@@ -105,7 +106,7 @@ class CheckDeposit extends Command
                                 $referral->notify(new DepositMail($referral,$userMessage,'Referral Bonus Received'));
                             }
                         }
-                    }elseif (strtolower($status) == 'partial'){
+                    }elseif (strtolower($status) == 'mismatch'){
                         $dataDeposit =[
                             'status'=>4
                         ];

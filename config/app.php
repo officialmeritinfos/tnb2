@@ -232,5 +232,7 @@ return [
 
     ],
 
-    'apiKey'=>env('TATUM_KEY')
+    'apiKey'=>env('TATUM_KEY'),
+    'plisio_key'=>env('PLISIO_KEY'),
+    'plisio_url'=>env('PLISIO_URL'),
 ];

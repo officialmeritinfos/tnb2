@@ -2,6 +2,7 @@
 namespace App\Defaults;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 trait Wallet{
 
@@ -11,29 +12,25 @@ trait Wallet{
 
     public function __construct()
     {
-        $this->url = 'https://sandbox.nextropay.com/api/';
-        $this->pubKey = 'CBX_TEST_PUB_1652721949385464170';
-        $this->privyKey = 'CBX_TEST_SEC_16527219491168518163';
+        $this->url = 'https://api.plisio.net/api/v1';
+        $this->pubKey = 'ukTuFEiDhF7r4IIzs3u7wCVjimCwOVHIKBr_GZEN902Tdl0TbOyJgWDJxLBhATdr';
     }
 
     public function createInvoice($data)
     {
-        $url = $this->url.'invoice/create';
-
-        return  $this->curlPost($url,$data);
+        $data['api_key']=$this->pubKey;
+        $url = $this->url.'/invoices/new?'.http_build_query($data);
+        return  $this->curlGet($url);
     }
 
     public function checkInvoice($ref)
     {
-        $url = 'https://sandbox.nextropay.com/api/invoice/'.$ref.'/details';
+        $url = 'https://api.plisio.net/api/v1/operations/'.$ref.'?api_key=ukTuFEiDhF7r4IIzs3u7wCVjimCwOVHIKBr_GZEN902Tdl0TbOyJgWDJxLBhATdr';
         return $this->curlGet($url);
     }
     public function curlGet($url)
     {
-        return Http::withHeaders([
-            'x-api-key'=>'CBX_TEST_PUB_1652721949385464170',
-            'Content-Type'=>'application/json'
-        ])->get($url);
+        return Http::get($url);
     }
 
     public function curlPost($url,$data = null)
