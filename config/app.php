@@ -235,4 +235,7 @@ return [
     'apiKey'=>env('TATUM_KEY'),
     'plisio_key'=>env('PLISIO_KEY'),
     'plisio_url'=>env('PLISIO_URL'),
+
+    'GOOGLE_RECAPTCHA_SECRET'=>env('GOOGLE_RECAPTCHA_SECRET'),
+    'GOOGLE_RECAPTCHA_SECRET'=>env('GOOGLE_RECAPTCHA_SECRET'),
 ];
