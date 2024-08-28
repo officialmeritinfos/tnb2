@@ -1,12 +1,42 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<!doctype html>
+<html lang="zxx">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="color-scheme" content="dark light">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap Min CSS -->
+    <link rel="stylesheet" href="{{asset('home/css/bootstrap.min.css')}}">
+    <!-- Owl Theme Default Min CSS -->
+    <link rel="stylesheet" href="{{asset('home/css/owl.theme.default.min.css')}}">
+    <!-- Owl Carousel Min CSS -->
+    <link rel="stylesheet" href="{{asset('home/css/owl.carousel.min.css')}}">
+    <!-- Animate Min CSS -->
+    <link rel="stylesheet" href="{{asset('home/css/animate.min.css')}}">
+    <!-- Boxicons Min CSS -->
+    <link rel="stylesheet" href="{{asset('home/css/boxicons.min.css')}}">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="{{asset('home/css/flaticon.css')}}">
+    <!-- Meanmenu Min CSS -->
+    <link rel="stylesheet" href="{{asset('home/css/meanmenu.min.css')}}">
+    <!-- Nice Select Min CSS -->
+    <link rel="stylesheet" href="{{asset('home/css/nice-select.min.css')}}">
+    <!-- Odometer Min CSS-->
+    <link rel="stylesheet" href="{{asset('home/css/odometer.min.css')}}">
+    <!-- Magnific Min CSS-->
+    <link rel="stylesheet" href="{{asset('home/css/magnific-popup.min.css')}}">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{{asset('home/css/style.css')}}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{{asset('home/css/responsive.css')}}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{asset('home/images/'.$web->logo)}}">
+    <meta name="description" content="Comprehensive financial advice and investment services that are tailored to meet your individual needs.">
+    <meta name="keywords" content="finance, invest, goal, values, income, earnings, gold, forex, equity">
+    <meta name="url" content="/">
+
     <meta name="og:title" content="{{$siteName}}"/>
     <meta name="og:type" content="company"/>
     <meta name="og:url" content="/"/>
@@ -16,227 +46,315 @@
     <meta name="description" content="{{$web->description}}">
     <meta name="keywords" content="business, marketing, agency">
     <title> {{$siteName}} | {{$pageName}}</title>
-    <!-- favicons Icons -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('home/images/'.$web->logo)}}" />
-    @stack('css')
-    <!-- Plugin'stylesheets  -->
-    <link rel="stylesheet" type="text/css" href="{{asset('home/fonts/typography/fonts.css')}}">
-    <link rel="stylesheet" href="{{asset('home/fonts/fontawesome/css/all.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('home/plugins/aos/aos.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('home/plugins/fancybox/jquery.fancybox.min.css')}}">
-    <!-- Vendor stylesheets  -->
-    <link rel="stylesheet" type="text/css" href="{{asset('home/plugins/bootstrap/dist/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('home/css/style.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('home/css/demo.css')}}">
-    <style>
-        @import url('https://fonts.cdnfonts.com/css/clash-display');
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700&amp;display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@500;600;700;800;900&amp;display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Cabin:wght@500;600;700&amp;display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&amp;display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap');
-        @import url('https://fonts.cdnfonts.com/css/clash-display');
-    </style>
 </head>
 
 <body>
-
 @inject('injected','App\Defaults\Custom')
-<div class="preloader-wrapper">
-    <div class="lds-ellipsis">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-</div>
-<div class="page-wrapper overflow-hidden">
-    <!--~~~~~~~~~~~~~~~~~~~~~~~~
-     Header Area
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-    <header class="site-header site-header--menu-left site-header--transparent site-header--absolute">
-        <div class="container">
-            <nav class="navbar site-navbar">
-                <!--~~~~~~~~~~~~~~~~~~~~~~~~
-                  Brand Logo
-              ~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                <div class="brand-logo">
-                    <a href="{{url('/')}}">
-                        <!-- light version logo (logo must be black)-->
-                        <img class="logo-light" src="{{asset('home/images/'.$web->logo)}}" alt="brand logo">
-                        <!-- Dark version logo (logo must be White)-->
+<!-- Start Preloader Area -->
+{{--<div class="preloader">--}}
+{{--    <div class="lds-ripple">--}}
+{{--        <div></div>--}}
+{{--        <div></div>--}}
+{{--    </div>--}}
+{{--</div>--}}
+<!-- End Preloader Area -->
+
+<!-- Start Arduix Navbar Area -->
+<div id="header" class="arduix-nav-style">
+    <div class="navbar-area">
+        <!-- Menu For Mobile Device -->
+        <div class="mobile-nav">
+            <a href="{{url('/')}}" class="logo">
+                <img src="{{asset('home/images/'.$web->logo)}}" alt="Logo" style="width:120px;">
+            </a>
+        </div>
+        <!-- Menu For Desktop Device -->
+        <div class="main-nav">
+            <nav class="navbar navbar-expand-md navbar-light">
+                <div class="container">
+                    <a class="navbar-brand" href="{{url('/')}}">
+                        <img src="{{asset('home/images/'.$web->logo)}}" alt="Logo" style="width:150px;">
                     </a>
-                </div>
-                <div class="menu-block-wrapper ">
-                    <div class="menu-overlay"></div>
-                    <nav class="menu-block" id="append-menu-header">
-                        <div class="mobile-menu-head">
-                            <a href="{{url('/')}}">
-                                <img src="{{asset('home/images/'.$web->logo)}}" alt="brand logo" style="width: 100px;">
-                            </a>
-                            <div class="current-menu-title"></div>
-                            <div class="mobile-menu-close">&times;</div>
-                        </div>
-                        <ul class="site-menu-main">
+                    <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                        <ul class="navbar-nav m-auto">
                             <li class="nav-item">
-                                <a href="{{url('/')}}" class="nav-link-item drop-trigger">Home</a>
-                            </li>
-
-                            <li class="nav-item nav-item-has-children">
-                                <a href="#" class="nav-link-item drop-trigger">Company<i class="fas fa-angle-down"></i>
+                                <a href="{{url('/')}}" class="nav-link dropdown-toggle active">
+                                    Home
                                 </a>
-                                <div class="sub-menu" id="submenu-13">
-                                    <ul class="sub-menu_list">
-                                        <li class="sub-menu_item"><a href="{{url('about')}}">About Us</a></li>
-                                        <li class="sub-menu_item"><a href="{{url('plan')}}">Plans</a></li>
-                                        <li class="sub-menu_item"><a href="{{url('contact')}}">Contact</a></li>
-                                    </ul>
-                                </div>
                             </li>
-
-                            <li class="nav-item nav-item-has-children">
-                                <a href="#" class="nav-link-item drop-trigger">Services<i class="fas fa-angle-down"></i>
+                            <li class="nav-item">
+                                <a href="{{url('about')}}" class="nav-link dropdown-toggle">
+                                    About
                                 </a>
-                                <div class="sub-menu" id="submenu-13">
-                                    <ul class="sub-menu_list">
-                                        @foreach($injected->getSectors() as $sector)
-                                            <li class="sub-menu_item"><a href="{{route('service.details',['id'=>$sector->id])}}" >{{$sector->title}}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </div>
                             </li>
 
-                            <li class="nav-item nav-item-has-children">
-                                <a href="#" class="nav-link-item drop-trigger">Sectors<i class="fas fa-angle-down"></i>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">
+                                    Service
+                                    <i class='bx bx-chevron-down'></i>
                                 </a>
-                                <div class="sub-menu" id="submenu-13">
-                                    <ul class="sub-menu_list">
-                                        @foreach($injected->getServices() as $service)
-                                            <li class="sub-menu_item"><a href="{{route('service.details',['id'=>$service->id])}}" >{{$service->title}}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                                <ul class="dropdown-menu">
+                                    @foreach($injected->getServices() as $servi)
+                                        <li class="nav-item">
+                                            <a href="{{route('service.details',['id'=>$servi->id])}}" class="nav-link">{{$servi->title}}</a>
+                                        </li>
+                                    @endforeach
+
+                                </ul>
                             </li>
 
-                            <li class="nav-item nav-item-has-children">
-                                <a href="#" class="nav-link-item drop-trigger">Help<i class="fas fa-angle-down"></i>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">
+                                    Pages
+                                    <i class='bx bx-chevron-down'></i>
                                 </a>
-                                <div class="sub-menu" id="submenu-13">
-                                    <ul class="sub-menu_list">
-                                        <li class="sub-menu_item"><a href="{{url('faqs')}}" >Frequently Asked Questions</a></li>
-                                        <li class="sub-menu_item"><a href="{{url('terms')}}" >Terms & Conditions</a></li>
-                                        <li class="sub-menu_item"><a href="{{url('privacy')}}" >Privacy policy</a></li>
-                                    </ul>
-                                </div>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a href="{{url('affiliate')}}" class="nav-link">Affiliates</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('plans')}}" class="nav-link">Plans</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('faqs')}}" class="nav-link">Faqs</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{url('terms')}}" class="nav-link">Terms & Conditions</a>
+                                    </li>
+
+                                </ul>
                             </li>
 
-                            <li class="nav-item nav-item-has-children">
-                                <a href="#" class="nav-link-item drop-trigger">Investor Space<i class="fas fa-angle-down"></i>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle">
+                                    Account
+                                    <i class='bx bx-chevron-down'></i>
                                 </a>
-                                <div class="sub-menu" id="submenu-13">
-                                    <ul class="sub-menu_list">
-                                        <li class="sub-menu_item"><a href="{{route('login')}}" >Login</a></li>
-                                        <li class="sub-menu_item"><a href="{{route('register')}}" >Register</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a href="{{route('login')}}" class="nav-link">Login</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('register')}}" class="nav-link">Register</a>
+                                    </li>
 
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{url('contact')}}" class="nav-link dropdown-toggle">
+                                    Contact
+                                </a>
+                            </li>
                         </ul>
-                    </nav>
-                </div>
-                <!--~~~~~~~~~~~~~~~~~~~~~~~~
-                mobile menu trigger
-               ~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                <div class="mobile-menu-trigger">
-                    <span></span>
-                </div>
-                <!--~~~~~~~~~~~~~~~~~~~~~~~~
-                  Mobile Menu Hamburger Ends
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                <div class="header-cta-btn-wrapper">
-                    <a href="{{route('login')}}" class="btn-masco btn-masco btn-masco--header btn-masco--header-secondary">
-                        <span>Login</span>
-                    </a>
-                    <a href="{{route('register')}}" class="btn-masco btn-masco btn-masco--header btn-primary-l05">
-                        <span>Sign up free</span></a>
+                        <!-- Start Other Option -->
+                        <div class="others-option">
+                            <a class="default-btn" href="{{route('login')}}">
+                                Log In
+                                <i class="bx bx-log-in-circle"></i>
+                            </a>
+                        </div>
+                        <!-- End Other Option -->
+                    </div>
                 </div>
             </nav>
         </div>
-    </header>
-    <!--~~~~~~~~~~~~~~~~~~~~~~~~
-     navbar-
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    </div>
+</div>
+<!-- End Arduix Navbar Area -->
 
-    @yield('content')
+@yield('content')
 
-    <div class="footer footer-padding-default footer--dark footer-l05 bg-black-3">
-        <div class="container">
-            <div class="row row--footer-main">
-                <div class="col-md-8 col-lg-5 col-xl-5 col-xxl-4 col-12">
-                    <div class="footer__content-block">
-                        <div class="footer__content-text">
-                            <div class="footer-brand">
-                                <img src="{{asset('home/images/'.$web->logo)}}" style="width: 150px;" alt="image alt">
-                            </div>
-                            <p>
-                                {{$siteName}} is a leading investment management organization that is dedicated to meeting
-                                each client’s unique needs through a wide range of investment strategies. Our team of investment
-                                experts is committed to increasing our clients’ returns on investment and fostering long-lasting
-                                partnerships based on trust and open communication.
-                            </p>
-                        </div>
-                        <a href="{{$web->email}}" class="footer-link">{{$web->email}}</a>
-                        <br>
-                    </div>
-                </div>
-                <div class=" col-lg-7 col-xl-6 col-xxl-7 offset-xl-1">
-                    <div class="row row--list-block">
-                        <div class="col-auto col-md-4 col-lg-auto col-xl-auto col-xxl-auto">
-                            <h3 class="footer-title">Primary Pages</h3>
-                            <ul class="footer-list">
-                                <li><a href="{{url('faqs')}}">Help Center</a></li>
-                                <li><a href="{{url('terms')}}">terms & conditions</a></li>
-                                <li><a href="{{url('privacy')}}">privacy policy</a></li>
-                                <li><a href="{{route('register')}}">Create Account</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-auto col-md-4 col-lg-auto col-xl-auto col-xxl-auto">
-                            <h3 class="footer-title">Utility pages</h3>
-                            <ul class="footer-list">
-                                <li ><a href="{{url('faqs')}}" >Frequently Asked Questions</a></li>
-                                <li ><a href="{{url('terms')}}" >Terms & Conditions</a></li>
-                                <li ><a href="{{url('privacy')}}" >Privacy policy</a></li>
-                            </ul>
-                        </div>
-                    </div>
+
+<!-- Start Footer Top Area -->
+<footer class="footer-top-area pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="single-widget">
+                    <a href="{{url('/')}}">
+                        <img src="{{asset('home/images/'.$web->logo)}}" alt="Image">
+                    </a>
+                    <p>
+                        {{$siteName}} remains your steadfast companion, offering not just investment opportunities but a holistic
+                        approach to financial well-being. With a global vision and a local impact, we continue to shape
+                        the future of finance, one successful investment at a time.
+                    </p>
+                    <ul class="social-icon">
+                        <li>
+                            <a href="#">
+                                <i class="bx bxl-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="bx bxl-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="bx bxl-pinterest-alt"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="bx bxl-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="bx bxl-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        <div class="copyright-block">
-            <div class="container">
-                <div class="copyright-inner text-center  copyright-border">
-                    <p>© Copyright {{date('Y')}}, All Rights Reserved by {{$siteName}}</p>
+            <div class="col-lg-3 col-md-6">
+                <div class="single-widget">
+                    <h3>Services</h3>
+                    <ul>
+                        @inject('injected','App\Defaults\Custom')
+                        @foreach($injected->getServices() as $serv)
+                            <li>
+                                <a href="{{route('service.details',['id'=>$serv->id])}}">
+                                    <i class="right-icon bx bx-chevrons-right"></i>
+                                    {{$serv->title}}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single-widget">
+                    <h3>Important Links</h3>
+                    <ul>
+                        <li>
+                            <a href="{{url('about')}}">
+                                <i class="right-icon bx bx-chevrons-right"></i>
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{url('faq')}}">
+                                <i class="right-icon bx bx-chevrons-right"></i>
+                                FAQs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{url('contact')}}">
+                                <i class="right-icon bx bx-chevrons-right"></i>
+                                Contact
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single-widget">
+                    <h3>Information</h3>
+                    <ul class="information">
+                        @if(!empty($web->phone))
+                            <li class="address">
+                                <i class="flaticon-call"></i>
+                                <span>Phone</span>
+                                <a href="tel:{{$web->phone}}">
+                                    {{$web->phone}}
+                                </a>
+                            </li>
+                        @endif
+                        <li class="address">
+                            <i class="flaticon-envelope"></i>
+                            <span>Email</span>
+                            <a href="mailto:{{$web->email}}">
+                                {{$web->email}}
+                            </a>
+                        </li>
+                        <li class="address">
+                            <i class="flaticon-maps-and-flags"></i>
+                            <span>Address</span>
+                            {{$web->address}}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+    <div class="footer-shape">
+        <img src="{{asset('home/img/shape/footer-shape-one.png')}}" alt="Image">
+        <img src="{{asset('home/img/shape/footer-shape-two.png')}}" alt="Image">
+    </div>
+</footer>
+<!-- End Footer Top Area -->
+
+<!-- Start Footer Bottom Area -->
+<footer class="footer-bottom-area">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4">
+                <div class="copy-right">
+                    <p>
+                       &copy; {{$siteName}}
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="privacy">
+                    <ul>
+                        <li>
+                            <a href="{{url('terms')}}">Terms & Conditions</a>
+                        </li>
+                        <li>
+                            <a href="{{url('privacy')}}">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="designed">
+                    <p>&copy; {{date('Y')}} {{$siteName}}. All right reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer Bottom Area -->
+
+<!-- Start Go Top Area -->
+<div class="go-top">
+    <i class="bx bx-chevrons-up"></i>
+    <i class="bx bx-chevrons-up bx-fade-up"></i>
 </div>
-<!-- Vendor Scripts -->
-<script src="{{asset('home/plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('home/plugins/jquery/jquery-migrate.min.js')}}"></script>
-<script src="{{asset('home/plugins/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
-<!-- Plugin's Scripts -->
-<script src="{{asset('home/plugins/inlineSvg/inlineSvg.min.js')}}"></script>
-<script src="{{asset('home/plugins/fancybox/jquery.fancybox.min.js')}}"></script>
-<script src="{{asset('home/plugins/aos/aos.min.js')}}"></script>
-<script src="{{asset('home/plugins/isotope/isotope.pkgd.min.js')}}"></script>
-<script src="{{asset('home/plugins/isotope/packery.pkgd.min.js')}}"></script>
-<script src="{{asset('home/plugins/isotope/image.loaded.js')}}"></script>
-<script src="{{asset('home/plugins/slick/slick.min.js')}}"></script>
-<script src="{{asset('home/plugins/countdown/jquery.countdown.js')}}" defer></script>
-<script src="{{asset('home/js/menu.js')}}"></script>
+<!-- End Go Top Area -->
+
+
+<!-- Jquery Min JS -->
+<script src="{{asset('home/js/jquery.min.js')}}"></script>
+<!-- Bootstrap Bundle Min JS -->
+<script src="{{asset('home/js/bootstrap.bundle.min.js')}}"></script>
+<!-- Meanmenu Min JS -->
+<script src="{{asset('home/js/meanmenu.min.js')}}"></script>
+<!-- Wow Min JS -->
+<script src="{{asset('home/js/wow.min.js')}}"></script>
+<!-- Owl Carousel Min JS -->
+<script src="{{asset('home/js/owl.carousel.min.js')}}"></script>
+<!-- Nice Select Min JS -->
+<script src="{{asset('home/js/nice-select.min.js')}}"></script>
+<!-- Appear Min JS -->
+<script src="{{asset('home/js/appear.min.js')}}"></script>
+<!-- Odometer Min JS -->
+<script src="{{asset('home/js/odometer.min.js')}}"></script>
+<!-- Magnific Min JS -->
+<script src="{{asset('home/js/magnific-popup.min.js')}}"></script>
+<!-- Ajaxchimp Min JS -->
+<script src="{{asset('home/js/ajaxchimp.min.js')}}"></script>
+<!-- Form Validator Min JS -->
+<script src="{{asset('home/js/form-validator.min.js')}}"></script>
+<!-- Contact JS -->
+<script src="{{asset('home/js/contact-form-script.js')}}"></script>
+<!-- Custom JS -->
 <script src="{{asset('home/js/custom.js')}}"></script>
-<!-- Activation Script -->
+<!-- Google language start -->
 <style>
 
     #google_translate_element {
@@ -340,19 +458,6 @@
         run = setInterval(request, interval);
     }
 </script>
-<!-- end popup massage -->
-@stack('js')
-<!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-    var _smartsupp = _smartsupp || {};
-    _smartsupp.key = '3097fdcfdfe7dc238cebd7cedb38232f8a5612dc';
-    window.smartsupp||(function(d) {
-        var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-        s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-        c.type='text/javascript';c.charset='utf-8';c.async=true;
-        c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-    })(document);
-</script>
-<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+
 </body>
 </html>

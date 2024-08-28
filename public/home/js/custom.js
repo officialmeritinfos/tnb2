@@ -1,145 +1,305 @@
-$(document).ready(function () {
-  // Nice Select Initialization
-  // $('select').niceSelect();
-  AOS.init({
-    once: true,
-    duration: 1000,
-    disable: function () {
-      var maxWidth = 991;
-      return window.innerWidth < maxWidth;
-    }
-  });
-  // Pricing Plan Change Trigger
-  function pricingTrigger() {
-    $("[data-plan-active]").each(function () {
-      var id = $(this).attr("data-plan-id");
-      var plan = $(this).attr("data-plan-active");
-      if (plan == "monthly") {
-        $("[data-pricing-trigger='" + id + "'][data-target='monthly']")?.addClass("active");
-        $("[data-pricing-trigger='" + id + "'][data-target='yearly']")?.removeClass("active");
-        $("[data-pricing-trigger='" + id + "'].toggle")?.attr("data-target", "yearly");
-        $("[data-pricing-trigger='" + id + "'].toggle")?.removeClass("active");
-      } else if (plan == "yearly") {
-        $("[data-pricing-trigger='" + id + "'][data-target='monthly']")?.removeClass("active");
-        $("[data-pricing-trigger='" + id + "'][data-target='yearly']")?.addClass("active");
-        $("[data-pricing-trigger='" + id + "'].toggle")?.addClass("active");
-        $("[data-pricing-trigger='" + id + "'].toggle")?.attr("data-target", "monthly");
-      }
+(function($) {
+	'use strict';
 
-    })
-    $('[data-pricing-trigger]').on('click', function (e) {
-      var id = $(e.target).attr('data-pricing-trigger');
-      var target = $(e.target).attr('data-target');
-      // $(e.target).addClass('active').siblings().removeClass('active');
-      // $("[data-pricing-trigger][data-target='yearly'].active").removeClass("active");
-      $("[data-plan-id='" + id + "'] .dynamic-value").each(function () {
-        let yearPrice = $(this).attr('data-yearly');
-        let monthPrice = $(this).attr('data-monthly');
+	// Mean Menu
+	$('.mean-menu').meanmenu({
+		meanScreenWidth: "991"
+	});
 
-        if (target == 'monthly') {
-          $(this).text(monthPrice);
-          $("[data-pricing-trigger][data-target='monthly']:not(.toggle)").addClass("active");
-          $("[data-pricing-trigger][data-target='yearly']:not(.toggle)").removeClass("active");
-          $("[data-pricing-trigger].toggle")?.removeClass("active");
-          $("[data-pricing-trigger].toggle").attr("data-target", "yearly");
-        }
-        if (target == 'yearly') {
-          $(this).text(yearPrice);
-          $("[data-pricing-trigger][data-target='monthly']:not(.toggle)").removeClass("active");
-          $("[data-pricing-trigger][data-target='yearly']:not(.toggle)").addClass("active");
-          $("[data-pricing-trigger].toggle")?.removeClass("active");
-          $("[data-pricing-trigger].toggle")?.addClass("active")
-          $("[data-pricing-trigger].toggle").attr("data-target", "monthly");
-        }
-      });
-    });
-  }
-  pricingTrigger();
+	// Preloader
+	$(window).on('load', function() {
+		$('.preloader').fadeOut();
+	});
 
-  inlineSVG.init({
-    svgSelector: '.inline-svg', // the class attached to all images that should be inlined
-    initClass: 'inline-svg-active', // class added to <html>
-  });
+	// Nice Select JS
+	$('select').niceSelect();
 
-  //***ISOTOPE***
-  // Portfolio-01
-  $(window).load(function () {
-    $(".navigation-active").isotope({
-      itemSelector: ".grid-item",
-      layoutMode: "fitRows"
-    });
-  });
+	// Header Sticky
+	$(window).on('scroll', function() {
+		if ($(this).scrollTop() >150){
+			$('.navbar-area').addClass("is-sticky");
+		}
+		else{
+			$('.navbar-area').removeClass("is-sticky");
+		}
+	});
 
-  $(window).load(function () {
-    $('.portfolio-v2').isotope({
-      itemSelector: '.grid-item',
-      percentPosition: true,
-      masonry: {
-        // use outer width of grid-sizer for columnWidth
-        columnWidth: 1,
-      }
-    })
-  })
+	// PrevScrollpos
+	var prevScrollpos = window.pageYOffset;
+	window.onscroll = function() {
+		var currentScrollPos = window.pageYOffset;
+		if (prevScrollpos > currentScrollPos) {
+			document.getElementById("header").style.top = "0";
+		} else {
+			document.getElementById("header").style.top = "-100px";
+		}
+		prevScrollpos = currentScrollPos;
+	}
 
-  // change is-checked class on buttons
-  $('.isotope-nav').each(function (i, buttonGroup) {
-    var $buttonGroup = $(buttonGroup);
-    $buttonGroup.on('click', 'a', function () {
-      $buttonGroup.find('.active').removeClass('active');
-      $(this).addClass('active');
-    });
-  });
+	// Client Wrap
+	$('.client-wrap').owlCarousel({
+		loop:true,
+		nav:false,
+		autoplay:true,
+		autoplayHoverPause: true,
+		mouseDrag: true,
+		margin: 20,
+		center: false,
+		dots: false,
+		smartSpeed:1500,
+		responsive:{
+			0:{
+				items:1
+			},
+			576:{
+				items:2
+			},
+			768:{
+				items:2
+			},
+			992:{
+				items:3
+			},
+			1200:{
+				items:3
+			}
+		}
+	});
 
-  // filter items on button click
-  $(".navigation-list").on("click", "li", function () {
-    $(this).addClass("active").siblings().removeClass("active");
-    var filterValue = $(this).attr("data-filter");
-    $(".isotope-navigation").isotope({
-      filter: filterValue
-    });
-  });
-  $(".home-7_testimonial-card-wrapper").slick({
-    dots: true,
-    infinite: true,
-    autoplay: true,
-    fade: true,
-    cssEase: 'linear'
-  });
-  $(".home-10_testimonial-widget-wrapper").slick({
-  })
-});
+	// Brand Wrap
+	$('.brand-wrap').owlCarousel({
+		loop:true,
+		nav:false,
+		autoplay:true,
+		mouseDrag: true,
+		margin: 0,
+		center: false,
+		dots: false,
+		slideTransition: 'linear',
+		autoplayTimeout: 4500,
+		autoplayHoverPause: true,
+		autoplaySpeed: 4500,
+		responsive:{
+			0:{
+				items:2
+			},
+			576:{
+				items:3
+			},
+			768:{
+				items:4
+			},
+			992:{
+				items:5
+			},
+			1200:{
+				items:5
+			}
+		}
+	});
+
+	// Case Top Wrap
+	$('.case-top-wrap').owlCarousel({
+		loop:true,
+		nav:false,
+		autoplay:true,
+		mouseDrag: true,
+		margin: 30,
+		center: false,
+		dots: true,
+		slideTransition: 'linear',
+		autoplayTimeout: 4500,
+		autoplayHoverPause: true,
+		autoplaySpeed: 4500,
+		responsive:{
+			0:{
+				items:1
+			},
+			576:{
+				items:2
+			},
+			768:{
+				items:2
+			},
+			992:{
+				items:3
+			},
+			1200:{
+				items:3
+			}
+		}
+	});
+
+	// Go to Top
+	// Scroll Event
+	$(window).on('scroll', function(){
+		var scrolled = $(window).scrollTop();
+		if (scrolled > 300) $('.go-top').addClass('active');
+		if (scrolled < 300) $('.go-top').removeClass('active');
+	});
+
+	// Click Event
+	$('.go-top').on('click', function() {
+		$("html, body").animate({ scrollTop: "0" },  100);
+	});
+
+	// FAQ Accordion
+	$('.accordion').find('.accordion-title').on('click', function(){
+		// Adds Active Class
+		$(this).toggleClass('active');
+		// Expand or Collapse This Panel
+		$(this).next().slideToggle('fast');
+		// Hide The Other Panels
+		$('.accordion-content').not($(this).next()).slideUp('fast');
+		// Removes Active Class From Other Titles
+		$('.accordion-title').not($(this)).removeClass('active');
+	});
+
+	// Count Time
+	function makeTimer() {
+		var endTime = new Date("november  30, 2021 17:00:00 PDT");
+		var endTime = (Date.parse(endTime)) / 1000;
+		var now = new Date();
+		var now = (Date.parse(now) / 1000);
+		var timeLeft = endTime - now;
+		var days = Math.floor(timeLeft / 86400);
+		var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
+		var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) / 60);
+		var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
+		if (hours < "10") { hours = "0" + hours; }
+		if (minutes < "10") { minutes = "0" + minutes; }
+		if (seconds < "10") { seconds = "0" + seconds; }
+		$("#days").html(days + "<span>Days</span>");
+		$("#hours").html(hours + "<span>Hours</span>");
+		$("#minutes").html(minutes + "<span>Minutes</span>");
+		$("#seconds").html(seconds + "<span>Seconds</span>");
+	}
+	setInterval(function() { makeTimer(); }, 300);
+
+	// Animation
+	new WOW().init();
+
+	// Tabs
+	$('.tab ul.tabs').addClass('active').find('> li:eq(0)').addClass('current');
+	$('.tab ul.tabs li a').on('click', function (g) {
+		var tab = $(this).closest('.tab'),
+		index = $(this).closest('li').index();
+		tab.find('ul.tabs > li').removeClass('current');
+		$(this).closest('li').addClass('current');
+		tab.find('.tab_content').find('div.tabs_item').not('div.tabs_item:eq(' + index + ')').slideUp();
+		tab.find('.tab_content').find('div.tabs_item:eq(' + index + ')').slideDown();
+		g.preventDefault();
+	});
+
+	// Odometer
+	$('.odometer').appear(function(e) {
+		var odo = $(".odometer");
+		odo.each(function() {
+			var countNumber = $(this).attr("data-count");
+			$(this).html(countNumber);
+		});
+	});
+
+	// Subscribe form
+	$(".newsletter-form").validator().on("submit", function (event) {
+		if (event.isDefaultPrevented()) {
+		// handle the invalid form...
+			formErrorSub();
+			submitMSGSub(false, "Please enter your email correctly.");
+		} else {
+			// everything looks good!
+			event.preventDefault();
+		}
+	});
+	function callbackFunction (resp) {
+		if (resp.result === "success") {
+			formSuccessSub();
+		}
+		else {
+			formErrorSub();
+		}
+	}
+	function formSuccessSub(){
+		$(".newsletter-form")[0].reset();
+		submitMSGSub(true, "Thank you for subscribing!");
+		setTimeout(function() {
+			$("#validator-newsletter").addClass('hide');
+		}, 4000)
+	}
+	function formErrorSub(){
+		$(".newsletter-form").addClass("animated shake");
+		setTimeout(function() {
+			$(".newsletter-form").removeClass("animated shake");
+		}, 1000)
+	}
+	function submitMSGSub(valid, msg){
+		if(valid){
+			var msgClasses = "validation-success";
+		} else {
+			var msgClasses = "validation-danger";
+		}
+		$("#validator-newsletter").removeClass().addClass(msgClasses).text(msg);
+	}
 
 
-$(window).on('load', function () {
-  $('#clock').countdown('2024/10/10', function (event) {
-    var $this = $(this).html(event.strftime(''
-      + '<span class="counter-item">%d <span class="counter-postfixer">Days</span></span> : '
-      + '<span class="counter-item">%H <span class="counter-postfixer">Hours</span></span> : '
-      + '<span class="counter-item">%M <span class="counter-postfixer">Minutes</span></span> : '
-      + '<span class="counter-item">%S <span class="counter-postfixer">Seconds</span></span> '));
-  });
-});
+	// Popup Video JS
+	$('.popup-youtube, .popup-vimeo').magnificPopup({
+		disableOn: 300,
+		type: 'iframe',
+		mainClass: 'mfp-fade',
+		removalDelay: 160,
+		preloader: false,
+		fixedContentPos: false,
+	});
 
-$(window).on('load', function () {
-  $("body").addClass("loading");
-  setTimeout(function () {
-    $(".preloader-wrapper").fadeOut(500);
-    $("body").removeClass("loading");
-  }, 1000);
-  setTimeout(function () {
-    $(".preloader-wrapper").remove();
-  }, 2000);
-});
+	// Arduix Slider
+	$('.arduix-slider').owlCarousel({
+		loop:true,
+		margin:0,
+		nav:true,
+		mouseDrag: false,
+		items:1,
+		dots: false,
+		autoHeight: true,
+		autoplay: true,
+		smartSpeed:1500,
+		autoplayHoverPause: true,
+		animateOut: "slideOutDown",
+		animateIn: "slideInDown",
+		navText: [
+			"<i class='bx bx-chevron-left'></i>",
+			"<i class='bx bx-chevron-right'></i>",
+		],
+	});
 
-//pagination
+	// Input Plus & Minus Number JS
+	$('.input-counter').each(function() {
+		var spinner = jQuery(this),
+		input = spinner.find('input[type="text"]'),
+		btnUp = spinner.find('.plus-btn'),
+		btnDown = spinner.find('.minus-btn'),
+		min = input.attr('min'),
+		max = input.attr('max');
 
-$(document).ready(function () {
-  // change active class on pagination
-  $('.pagination-wrapper').each(function (i, buttonGroup) {
-    var $buttonGroup = $(buttonGroup);
-    $buttonGroup.on('click', '.btn-main', function () {
-      $buttonGroup.find('.active').removeClass('active');
-      $(this).addClass('active');
-    });
-  });
-});
+		btnUp.on('click', function() {
+			var oldValue = parseFloat(input.val());
+			if (oldValue >= max) {
+				var newVal = oldValue;
+			} else {
+				var newVal = oldValue + 1;
+			}
+			spinner.find("input").val(newVal);
+			spinner.find("input").trigger("change");
+		});
+		btnDown.on('click', function() {
+			var oldValue = parseFloat(input.val());
+			if (oldValue <= min) {
+				var newVal = oldValue;
+			} else {
+				var newVal = oldValue - 1;
+			}
+			spinner.find("input").val(newVal);
+			spinner.find("input").trigger("change");
+		});
+	});
+})(jQuery);

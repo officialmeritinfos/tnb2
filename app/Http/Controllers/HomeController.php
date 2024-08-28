@@ -282,5 +282,18 @@ class HomeController extends Controller
 
         return view('home.career',$dataView);
     }
+    public function affiliate()
+    {
+        $web = GeneralSetting::where('id',1)->first();
+
+        $dataView = [
+            'siteName'  => $web->name,
+            'web'       => $web,
+            'pageName'  => 'Affiliates',
+            'packages'  => Package::where('status',1)->get()
+        ];
+
+        return view('home.affiliate',$dataView);
+    }
 }
 
