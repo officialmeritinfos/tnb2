@@ -101,27 +101,29 @@
 
                         </table>
                     </div>
-{{--                    <hr>--}}
-{{--                    <div class="row">--}}
-{{--                        <div class="col-xl-12 text-center text-info alert alert-primary">--}}
-{{--                            <p>--}}
-{{--                                You are to send <b>{{number_format($investment->amount,2)}} of {{$investment->asset}}</b>--}}
-{{--                                to the address <b style="font-size:20px;" id="address">{{$investment->wallet}}</b>.<br>--}}
-{{--                                After making payment, contact support for instant crediting.--}}
-{{--                            </p>--}}
-{{--                            <button class="btn btn-primary copy" data-clipboard-target="#address">Copy</button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    <hr>
+                    <div class="row">
+                        <div class="col-xl-12 text-center text-info alert alert-primary">
+                            <p>
+                                You are to send <b>{{number_format($investment->amount,2)}} of {{$investment->asset}}</b>
+                                to the address <b style="font-size:20px;" id="address">{{$investment->wallet}}</b>.<br>
+                                After making payment, contact support for instant crediting.
+                            </p>
+                            <button class="btn btn-primary copy" data-clipboard-target="#address">Copy</button>
+                        </div>
+                    </div>
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
                             <div class=" text-center">
                                 <a href="{{route('admin.invest.complete',['id'=>$investment->id])}}"
-                                   class="btn btn-success">Complete Investment</a>
+                                   class="btn btn-success mt-4">Complete Investment</a>
                                 <a href="{{route('admin.invest.start',['id'=>$investment->id])}}"
-                                   class="btn btn-primary">Start Investment</a>
+                                   class="btn btn-primary mt-4">Start Investment</a>
                                 <a href="{{route('admin.invest.cancel',['id'=>$investment->id])}}"
-                                   class="btn btn-danger">Cancel</a>
+                                   class="btn btn-danger mt-4">Cancel</a>
+                                <a href="{{route('admin.invest.delete',['id'=>$investment->id])}}"
+                                   class="btn btn-warning mt-4">Delete</a>
                             </div>
                         </div>
                     </div>

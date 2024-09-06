@@ -73,7 +73,7 @@ class Register extends Controller
         $created = User::create($dataUser);
         if (!empty($created)){
 
-            $this->generateUserWallet($created);
+//            $this->generateUserWallet($created);
             //check if user needs to verify their account or not
             switch ($created->emailVerified){
                 case 1:

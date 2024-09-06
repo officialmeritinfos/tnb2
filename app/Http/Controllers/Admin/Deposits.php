@@ -71,30 +71,29 @@ class Deposits extends Controller
             User::where('id',$investor->id)->update($dataUser);
             //send mail to investor
             $userMessage = "
-                Your deposit of $<b>" . $deposit->amount . " worth of " . $deposit->asset . "</b>
-                has been received and your payment credited to your account. You can proceed to investing.
+                Your deposit of $<b>" . $deposit->amount . " has been received and account credited.
             ";
             //SendInvestmentNotification::dispatch($investor, $userMessage, 'Deposit Received');
-            $investor->notify(new InvestmentMail($investor, $userMessage, 'Deposit Received'));
+            $investor->notify(new InvestmentMail($investor, $userMessage, 'Account Credit Notification'));
             //check if user has referral
-            if ($investor->referral != 0 && !empty($investor->referral)) {
-                $refBonus = $deposit->amount * ($web->refBonus / 100);
-
-                $referral = User::where('id', $investor->referral)->first();
-                $dataReferral = [
-                    'refBal' => $referral->refBal + $refBonus
-                ];
-                $creditReferral = User::where('id', $referral->id)->update($dataReferral);
-                if ($creditReferral) {
-                    //send mail to referral
-                    $userMessages = "
-                      Your referral balance on " . $web->name . " has been credited with $<b>" . $refBonus . " from your
-                      downliner.
-                    ";
-                    //SendInvestmentNotification::dispatch($referral, $userMessage, 'Referral Bonus Received');
-                    $referral->notify(new InvestmentMail($referral,$userMessages, 'Referral Bonus Received'));
-                }
-            }
+//            if ($investor->referral != 0 && !empty($investor->referral)) {
+//                $refBonus = $deposit->amount * ($web->refBonus / 100);
+//
+//                $referral = User::where('id', $investor->referral)->first();
+//                $dataReferral = [
+//                    'refBal' => $referral->refBal + $refBonus
+//                ];
+//                $creditReferral = User::where('id', $referral->id)->update($dataReferral);
+//                if ($creditReferral) {
+//                    //send mail to referral
+//                    $userMessages = "
+//                      Your referral balance on " . $web->name . " has been credited with $<b>" . $refBonus . " from your
+//                      downliner.
+//                    ";
+//                    //SendInvestmentNotification::dispatch($referral, $userMessage, 'Referral Bonus Received');
+//                    $referral->notify(new InvestmentMail($referral,$userMessages, 'Referral Bonus Received'));
+//                }
+//            }
         }
         return back()->with('success','Deposit approved');
     }

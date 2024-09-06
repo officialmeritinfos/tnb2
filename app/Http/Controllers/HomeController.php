@@ -158,7 +158,6 @@ class HomeController extends Controller
             'web'       => $web,
             'pageName'  => $service->title,
             'service'  => $service,
-            'packages'  => Package::where('status',1)->where('service',$service->id)->get()
         ];
 
         return view('home.service_detail',$dataView);

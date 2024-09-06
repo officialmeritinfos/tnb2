@@ -98,4 +98,16 @@ class Withdrawals extends Controller
         }
         return back()->with('success','Withdrawal Approved');
     }
+
+    public function delete($id)
+    {
+        $withdrawal = Withdrawal::where('id', $id)->first();
+        if (empty($withdrawal)) {
+            return back()->with('error', 'Not found');
+        }
+
+        $withdrawal->delete();
+
+        return back()->with('success','Deleted');
+    }
 }

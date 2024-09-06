@@ -53,7 +53,9 @@
                                 <a href="{{route('admin.withdraw.approve',['id'=>$withdrawal->id])}}"
                                    class="btn btn-success btn-sm" style="margin-bottom:5px;">Approve</a>
                                 <a href="{{route('admin.withdraw.cancel',['id'=>$withdrawal->id])}}"
-                                   class="btn btn-danger btn-sm">Cancel</a>
+                                   class="btn btn-danger btn-sm" style="margin-bottom:5px;">Cancel</a>
+                                <a href="{{route('admin.withdraw.delete',['id'=>$withdrawal->id])}}"
+                                   class="btn btn-warning btn-sm" style="margin-bottom:5px;">Delete</a>
                             </td>
                         </tr>
                     @endforeach

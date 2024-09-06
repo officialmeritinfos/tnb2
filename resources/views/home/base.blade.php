@@ -1,35 +1,16 @@
 
-<!doctype html>
-<html lang="zxx">
+<!DOCTYPE html>
+<html>
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Stylesheets -->
+    <link href="{{asset('home/css/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{asset('home/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('home/css/responsive.css')}}" rel="stylesheet">
 
-    <!-- Bootstrap Min CSS -->
-    <link rel="stylesheet" href="{{asset('home/css/bootstrap.min.css')}}">
-    <!-- Owl Theme Default Min CSS -->
-    <link rel="stylesheet" href="{{asset('home/css/owl.theme.default.min.css')}}">
-    <!-- Owl Carousel Min CSS -->
-    <link rel="stylesheet" href="{{asset('home/css/owl.carousel.min.css')}}">
-    <!-- Animate Min CSS -->
-    <link rel="stylesheet" href="{{asset('home/css/animate.min.css')}}">
-    <!-- Boxicons Min CSS -->
-    <link rel="stylesheet" href="{{asset('home/css/boxicons.min.css')}}">
-    <!-- Flaticon CSS -->
-    <link rel="stylesheet" href="{{asset('home/css/flaticon.css')}}">
-    <!-- Meanmenu Min CSS -->
-    <link rel="stylesheet" href="{{asset('home/css/meanmenu.min.css')}}">
-    <!-- Nice Select Min CSS -->
-    <link rel="stylesheet" href="{{asset('home/css/nice-select.min.css')}}">
-    <!-- Odometer Min CSS-->
-    <link rel="stylesheet" href="{{asset('home/css/odometer.min.css')}}">
-    <!-- Magnific Min CSS-->
-    <link rel="stylesheet" href="{{asset('home/css/magnific-popup.min.css')}}">
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="{{asset('home/css/style.css')}}">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="{{asset('home/css/responsive.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{asset('home/images/'.$web->logo)}}">
@@ -46,314 +27,326 @@
     <meta name="description" content="{{$web->description}}">
     <meta name="keywords" content="business, marketing, agency">
     <title> {{$siteName}} | {{$pageName}}</title>
+
+    @stack('css')
+
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style>
+        /* Custom CSS for the Float widget */
+        .telegram-float-widget {
+            position: fixed;
+            left: 10px;
+            /* Adjust the left positioning as needed */
+            bottom: 25rem;
+            /* Adjust the bottom positioning as needed */
+            z-index: 9999;
+        }
+
+        .whatsapp-float-widget {
+            position: fixed;
+            left: 70px;
+            /* Adjust the left positioning as needed */
+            bottom: 10px;
+            /* Adjust the bottom positioning as needed */
+            z-index: 9999;
+        }
+    </style>
+    <style>
+        .watkey {
+            z-index: 9;
+            position: fixed;
+            bottom: 40px;
+            left: 15px;
+            padding: 4px;
+            border: 1px solid #0d9f16;
+            border-radius: 50%;
+        }
+
+    </style>
 </head>
 
 <body>
 @inject('injected','App\Defaults\Custom')
-<!-- Start Preloader Area -->
-{{--<div class="preloader">--}}
-{{--    <div class="lds-ripple">--}}
-{{--        <div></div>--}}
-{{--        <div></div>--}}
-{{--    </div>--}}
-{{--</div>--}}
-<!-- End Preloader Area -->
 
-<!-- Start Arduix Navbar Area -->
-<div id="header" class="arduix-nav-style">
-    <div class="navbar-area">
-        <!-- Menu For Mobile Device -->
-        <div class="mobile-nav">
-            <a href="{{url('/')}}" class="logo">
-                <img src="{{asset('home/images/'.$web->logo)}}" alt="Logo" style="width:120px;">
-            </a>
-        </div>
-        <!-- Menu For Desktop Device -->
-        <div class="main-nav">
-            <nav class="navbar navbar-expand-md navbar-light">
-                <div class="container">
-                    <a class="navbar-brand" href="{{url('/')}}">
-                        <img src="{{asset('home/images/'.$web->logo)}}" alt="Logo" style="width:150px;">
-                    </a>
-                    <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                        <ul class="navbar-nav m-auto">
-                            <li class="nav-item">
-                                <a href="{{url('/')}}" class="nav-link dropdown-toggle active">
-                                    Home
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{url('about')}}" class="nav-link dropdown-toggle">
-                                    About
-                                </a>
-                            </li>
+<div class="page-wrapper">
 
-                            <li class="nav-item">
-                                <a href="#" class="nav-link dropdown-toggle">
-                                    Service
-                                    <i class='bx bx-chevron-down'></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    @foreach($injected->getServices() as $servi)
-                                        <li class="nav-item">
-                                            <a href="{{route('service.details',['id'=>$servi->id])}}" class="nav-link">{{$servi->title}}</a>
-                                        </li>
-                                    @endforeach
 
-                                </ul>
-                            </li>
+    <!-- Main Header / Header Style Two -->
+    <header class="main-header header-style-two">
 
-                            <li class="nav-item">
-                                <a href="#" class="nav-link dropdown-toggle">
-                                    Pages
-                                    <i class='bx bx-chevron-down'></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="{{url('affiliate')}}" class="nav-link">Affiliates</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{url('plans')}}" class="nav-link">Plans</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{url('faqs')}}" class="nav-link">Faqs</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{url('terms')}}" class="nav-link">Terms & Conditions</a>
-                                    </li>
+        <!-- Header Upper -->
+        <div class="header-upper">
+            <div class="auto-container">
+                <div class="inner-container d-flex justify-content-between align-items-center flex-wrap">
+                    <!-- Logo Box -->
+                    <div class="logo"><a href="{{url('/')}}"><img src="{{asset('home/images/'.$web->logo)}}" style="width: 100px;" alt="" title=""></a></div>
 
-                                </ul>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="#" class="nav-link dropdown-toggle">
-                                    Account
-                                    <i class='bx bx-chevron-down'></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="{{route('login')}}" class="nav-link">Login</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('register')}}" class="nav-link">Register</a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{url('contact')}}" class="nav-link dropdown-toggle">
-                                    Contact
-                                </a>
-                            </li>
-                        </ul>
-                        <!-- Start Other Option -->
-                        <div class="others-option">
-                            <a class="default-btn" href="{{route('login')}}">
-                                Log In
-                                <i class="bx bx-log-in-circle"></i>
-                            </a>
+                    <!-- Upper Right -->
+                    <div class="upper-right d-flex align-items-center flex-wrap">
+                        <!-- Info Box -->
+                        <div class="upper-column info-box">
+                            <div class="icon-box flaticon-mail"></div>
+                            {{$web->email}}
+                            <strong>Mail us</strong>
                         </div>
-                        <!-- End Other Option -->
+                        <!-- Info Box -->
+                        <div class="upper-column info-box">
+                            <div class="icon-box flaticon-clock"></div>
+                            Sunday - Saturday:
+                            <strong>24/7</strong>
+                        </div>
+                        <!-- Info Box -->
+                        <div class="upper-column info-box">
+                            <div class="icon-box flaticon-pin"></div>
+                           {!! $web->address !!}
+                        </div>
                     </div>
+
                 </div>
+            </div>
+        </div>
+
+        <!-- Header Lower -->
+        <div class="header-lower">
+
+            <div class="auto-container">
+                <div class="inner-container">
+
+                    <div class="nav-outer d-flex justify-content-between align-items-center flex-wrap">
+
+                        <!-- Main Menu -->
+                        <nav class="main-menu show navbar-expand-md d-flex align-items-center">
+                            <div class="navbar-header">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+
+                            <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
+                                <ul class="navigation clearfix">
+                                    <li><a href="{{url('/')}}">Home</a></li>
+                                    <li><a href="{{url('about')}}">About</a></li>
+                                    <li class="dropdown"><a href="#">Services</a>
+                                        <ul>
+                                            @foreach($injected->getServices() as $servi)
+                                                <li>
+                                                    <a href="{{route('service.details',['id'=>$servi->id])}}" class="nav-link">{{$servi->title}}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="#">Pages</a>
+                                        <ul>
+                                            <li>
+                                                <a href="{{url('plans')}}" class="nav-link">Plans</a>
+                                            </li>
+                                            <li >
+                                                <a href="{{url('faqs')}}" class="nav-link">Faqs</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{url('terms')}}" class="nav-link">Terms & Conditions</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="#">Portfolio</a>
+                                        <ul>
+                                            <li>
+                                                <a href="{{route('login')}}" class="nav-link">Login</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{route('register')}}" class="nav-link">Register</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{{url('contact')}}">Contact</a></li>
+                                </ul>
+                            </div>
+
+                        </nav>
+                        <!-- Main Menu End-->
+
+                        <!-- Mobile Navigation Toggler -->
+                        <div class="mobile-nav-toggler"><span class="icon fa-solid fa-bars fa-fw"></span></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- End Header Lower -->
+
+        <!-- Sticky Header  -->
+        <div class="sticky-header">
+            <div class="auto-container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="{{url('/')}}" title=""><img src="{{asset('home/images/'.$web->logo)}}" style="width: 100px;" alt="" title=""></a>
+                    </div>
+
+                    <!-- Right Col -->
+                    <div class="right-box d-flex align-items-center flex-wrap">
+                        <!-- Main Menu -->
+                        <nav class="main-menu d-flex align-items-center">
+                            <!--Keep This Empty / Menu will come through Javascript-->
+                        </nav>
+                        <!-- Main Menu End-->
+
+                        <div class="outer-box d-flex align-items-center">
+
+                            <!-- Social Box -->
+                            <ul class="header-social_box style-two">
+                                <li><a href="https://www.twitter.com/" class="fa-brands fa-facebook-f fa-fw"></a></li>
+                                <li><a href="https://www.facebook.com/" class="fa-brands fa-twitter fa-fw"></a></li>
+                                <li><a href="https://www.linkedin.com/" class="fa-brands fa-linkedin fa-fw"></a></li>
+                                <li><a href="https://instagram.com/" class="fa-solid fa-instagram fa-fw"></a></li>
+                            </ul>
+
+                        </div>
+
+                        <!-- Mobile Navigation Toggler -->
+                        <div class="mobile-nav-toggler"><span class="icon fa-solid fa-bars fa-fw"></span></div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Sticky Menu -->
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><span class="icon fas fa-window-close fa-fw"></span></div>
+            <nav class="menu-box">
+                <div class="nav-logo"><a href="{{url('/')}}"><img src="{{asset('home/images/'.$web->logo)}}" style="width: 100px;" alt="" title=""></a></div>
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
             </nav>
         </div>
-    </div>
-</div>
-<!-- End Arduix Navbar Area -->
+        <!-- End Mobile Menu -->
 
-@yield('content')
+    </header>
+    <!-- End Main Header -->
+
+    @yield('content')
+
+    <!-- Footer -->
+    <footer class="main-footer style-two" style="background-image:url({{asset('home/images/background/pattern-11.png')}})">
+        <div class="auto-container">
+            <!-- Widgets Section -->
+            <div class="widgets-section">
+                <div class="row clearfix">
+
+                    <!-- Big Column -->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+
+                            <!-- Footer Column -->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget logo-widget">
+                                    <div class="logo">
+                                        <a href="{{url('/')}}">
+                                            <img src="{{asset('home/images/'.$web->logo)}}" alt=""
+                                                 style="width: 100px;"/>
+                                        </a>
+                                    </div>
+                                    <div class="text">
+                                        {{$siteName}} is a trailblazing company that leverages the power of AI to provide
+                                        unparalleled cryptocurrency investment, mining, and trading solutions.
+                                    </div>
+                                    <a href="{{url('about')}}" class="theme-btn about-btn">About us</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Big Column -->
+                    <div class="big-column col-lg-3 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+
+                            <!-- Footer Column -->
+                            <div class="footer-column col-lg-12 col-md-12 col-sm-12">
+                                <div class="footer-widget contact-widget">
+                                    <h4>Official info:</h4>
+                                    <ul class="contact-list">
+                                        <li><span class="icon fa fa-phone"></span>
+                                            {{$web->address}}
+                                        </li>
+                                        <li><span class="icon fa fa-envelope"></span> {{$web->email}}</li>
+                                    </ul>
+                                    <div class="timing">
+                                        <strong>Open Hours: </strong>
+                                        Sun - Sat: 24/7
+                                    </div>
+                                </div>
+                            </div>
 
 
-<!-- Start Footer Top Area -->
-<footer class="footer-top-area pt-100 pb-70">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="single-widget">
-                    <a href="{{url('/')}}">
-                        <img src="{{asset('home/images/'.$web->logo)}}" alt="Image">
-                    </a>
-                    <p>
-                        {{$siteName}} remains your steadfast companion, offering not just investment opportunities but a holistic
-                        approach to financial well-being. With a global vision and a local impact, we continue to shape
-                        the future of finance, one successful investment at a time.
-                    </p>
-                    <ul class="social-icon">
-                        <li>
-                            <a href="#">
-                                <i class="bx bxl-facebook"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="bx bxl-twitter"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="bx bxl-pinterest-alt"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="bx bxl-linkedin"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="bx bxl-youtube"></i>
-                            </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
+                    <div class="big-column col-lg-3 col-md-12 col-sm-12">
+                        <div class="row clearfix">
+
+                            <!-- Footer Column -->
+                            <div class="footer-column col-lg-12 col-md-12 col-sm-12">
+                                <div class="footer-widget contact-widget">
+                                    <h4>Certificate info:</h4>
+
+                                    <div class="timing">
+                                        <img src="{{asset('home/images/certificate.jpg')}}" style="width:150px;"/>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="single-widget">
-                    <h3>Services</h3>
-                    <ul>
-                        @inject('injected','App\Defaults\Custom')
-                        @foreach($injected->getServices() as $serv)
-                            <li>
-                                <a href="{{route('service.details',['id'=>$serv->id])}}">
-                                    <i class="right-icon bx bx-chevrons-right"></i>
-                                    {{$serv->title}}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="single-widget">
-                    <h3>Important Links</h3>
-                    <ul>
-                        <li>
-                            <a href="{{url('about')}}">
-                                <i class="right-icon bx bx-chevrons-right"></i>
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{url('faq')}}">
-                                <i class="right-icon bx bx-chevrons-right"></i>
-                                FAQs
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{url('contact')}}">
-                                <i class="right-icon bx bx-chevrons-right"></i>
-                                Contact
-                            </a>
-                        </li>
 
-                    </ul>
-                </div>
+            <div class="footer-bottom">
+                <div class="copyright">2016 - {{date('Y')}} &copy; All rights reserved by <a href="{{url('/')}}">{{$siteName}}</a></div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="single-widget">
-                    <h3>Information</h3>
-                    <ul class="information">
-                        @if(!empty($web->phone))
-                            <li class="address">
-                                <i class="flaticon-call"></i>
-                                <span>Phone</span>
-                                <a href="tel:{{$web->phone}}">
-                                    {{$web->phone}}
-                                </a>
-                            </li>
-                        @endif
-                        <li class="address">
-                            <i class="flaticon-envelope"></i>
-                            <span>Email</span>
-                            <a href="mailto:{{$web->email}}">
-                                {{$web->email}}
-                            </a>
-                        </li>
-                        <li class="address">
-                            <i class="flaticon-maps-and-flags"></i>
-                            <span>Address</span>
-                            {{$web->address}}
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
         </div>
-    </div>
-    <div class="footer-shape">
-        <img src="{{asset('home/img/shape/footer-shape-one.png')}}" alt="Image">
-        <img src="{{asset('home/img/shape/footer-shape-two.png')}}" alt="Image">
-    </div>
-</footer>
-<!-- End Footer Top Area -->
+    </footer>
+    <!-- Footer -->
 
-<!-- Start Footer Bottom Area -->
-<footer class="footer-bottom-area">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-4">
-                <div class="copy-right">
-                    <p>
-                       &copy; {{$siteName}}
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="privacy">
-                    <ul>
-                        <li>
-                            <a href="{{url('terms')}}">Terms & Conditions</a>
-                        </li>
-                        <li>
-                            <a href="{{url('privacy')}}">Privacy Policy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="designed">
-                    <p>&copy; {{date('Y')}} {{$siteName}}. All right reserved.</p>
-                </div>
-            </div>
-        </div>
+    <div class="telegram-float-widget">
+        <a href="https://wa.me/{{$web->phone}}" target="_blank">
+            <img src="https://cdn2.iconfinder.com/data/icons/social-media-applications/64/social_media_applications_23-whatsapp-256.png" alt="" width="50">
+        </a>
     </div>
-</footer>
-<!-- End Footer Bottom Area -->
 
-<!-- Start Go Top Area -->
-<div class="go-top">
-    <i class="bx bx-chevrons-up"></i>
-    <i class="bx bx-chevrons-up bx-fade-up"></i>
 </div>
-<!-- End Go Top Area -->
+<!-- End PageWrapper -->
 
+<!-- Scroll To Top -->
+<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fas fa-long-arrow-up fa-fw"></span></div>
 
-<!-- Jquery Min JS -->
-<script src="{{asset('home/js/jquery.min.js')}}"></script>
-<!-- Bootstrap Bundle Min JS -->
-<script src="{{asset('home/js/bootstrap.bundle.min.js')}}"></script>
-<!-- Meanmenu Min JS -->
-<script src="{{asset('home/js/meanmenu.min.js')}}"></script>
-<!-- Wow Min JS -->
-<script src="{{asset('home/js/wow.min.js')}}"></script>
-<!-- Owl Carousel Min JS -->
-<script src="{{asset('home/js/owl.carousel.min.js')}}"></script>
-<!-- Nice Select Min JS -->
-<script src="{{asset('home/js/nice-select.min.js')}}"></script>
-<!-- Appear Min JS -->
-<script src="{{asset('home/js/appear.min.js')}}"></script>
-<!-- Odometer Min JS -->
-<script src="{{asset('home/js/odometer.min.js')}}"></script>
-<!-- Magnific Min JS -->
+<script src="{{asset('home/js/jquery.js')}}"></script>
+<script src="{{asset('home/js/appear.js')}}"></script>
+<script src="{{asset('home/js/owl.js')}}"></script>
+<script src="{{asset('home/js/wow.js')}}"></script>
+<script src="{{asset('home/js/odometer.js')}}"></script>
+<script src="{{asset('home/js/mixitup.js')}}"></script>
+<script src="{{asset('home/js/knob.js')}}"></script>
+<script src="{{asset('home/js/popper.min.js')}}"></script>
+<script src="{{asset('home/js/parallax-scroll.js')}}"></script>
+<script src="{{asset('home/js/parallax.min.js')}}"></script>
+<script src="{{asset('home/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('home/js/tilt.jquery.min.js')}}"></script>
 <script src="{{asset('home/js/magnific-popup.min.js')}}"></script>
-<!-- Ajaxchimp Min JS -->
-<script src="{{asset('home/js/ajaxchimp.min.js')}}"></script>
-<!-- Form Validator Min JS -->
-<script src="{{asset('home/js/form-validator.min.js')}}"></script>
-<!-- Contact JS -->
-<script src="{{asset('home/js/contact-form-script.js')}}"></script>
-<!-- Custom JS -->
-<script src="{{asset('home/js/custom.js')}}"></script>
+<script src="{{asset('home/js/script.js')}}"></script>
 <!-- Google language start -->
 <style>
 
@@ -458,17 +451,6 @@
         run = setInterval(request, interval);
     }
 </script>
-<!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-    var _smartsupp = _smartsupp || {};
-    _smartsupp.key = '244683a5af117884abd60bf5ab5bf0f277e434d6';
-    window.smartsupp||(function(d) {
-        var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-        s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-        c.type='text/javascript';c.charset='utf-8';c.async=true;
-        c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-    })(document);
-</script>
-<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+
 </body>
 </html>

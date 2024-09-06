@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use App\Models\Notification;
 
 class Investors extends Controller
 {
@@ -57,7 +58,8 @@ class Investors extends Controller
             'pageName' => 'Investor Details',
             'user'     =>  $user,
             'web'=>$web,
-            'investor'=>User::where('id',$id)->first()
+            'investor'=>User::where('id',$id)->first(),
+            'promos'=>Notification::where('user',$id)->get()
         ];
 
         return view('admin.investor_detail',$dataView);
@@ -419,7 +421,7 @@ class Investors extends Controller
         return back()->with('success','Bonus subtracted');
     }
 
-     public function loginUser($id)
+    public function loginUser($id)
     {
         $web = GeneralSetting::where('id',1)->first();
         $user = Auth::user();
@@ -446,6 +448,42 @@ class Investors extends Controller
     {
         $data =[
             'isVerified'=>3
+        ];
+        User::where('id',$id)->update($data);
+
+        return back()->with('success','Successful');
+    }
+    public function activateReinvestment($id)
+    {
+        $data =[
+            'canCompound'=>1
+        ];
+        User::where('id',$id)->update($data);
+
+        return back()->with('success','Successful');
+    }
+    public function deactivateReinvestment($id)
+    {
+        $data =[
+            'canCompound'=>2
+        ];
+        User::where('id',$id)->update($data);
+
+        return back()->with('success','Successful');
+    }
+    public function activateWithdrawal($id)
+    {
+        $data =[
+            'canWithdraw'=>1
+        ];
+        User::where('id',$id)->update($data);
+
+        return back()->with('success','Successful');
+    }
+    public function deactivateWithdrawal($id)
+    {
+        $data =[
+            'canWithdraw'=>2
         ];
         User::where('id',$id)->update($data);
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Deposit;
 use App\Models\GeneralSetting;
 use App\Models\Investment;
+use App\Models\Notification;
 use App\Models\Promo;
 use App\Models\User;
 use App\Models\Withdrawal;
@@ -24,19 +25,20 @@ class Dashboard extends Controller
             'siteName' => $web->name,
             'pageName' => 'User Dashboard',
             'user'     =>  $user,
-            'pendingDeposit'=>Deposit::where('user',$user->id)->where('status',2)->get(),
-            'withdrawals'=>Withdrawal::where('user',$user->id)->where('status',1)->get(),
-            'pendingWithdrawal'=>Withdrawal::where('user',$user->id)->where('status','!=',1)->get(),
+            'pendingDeposit'=>Deposit::where('user',$user->id)->where('status',2)->sum('amount'),
+            'withdrawals'=>Withdrawal::where('user',$user->id)->where('status',1)->sum('amount'),
+            'pendingWithdrawal'=>Withdrawal::where('user',$user->id)->where('status','!=',1)->sum('amount'),
             'investments' => Investment::where('user',$user->id)->get(),
-            'ongoingInvestments'=>Investment::where('user',$user->id)->where('status',4)->get(),
-            'completedInvestments'=>Investment::where('user',$user->id)->where('status',1)->get(),
+            'ongoingInvestments'=>Investment::where('user',$user->id)->where('status',4)->sum('amount'),
+            'completedInvestments'=>Investment::where('user',$user->id)->where('status',1)->sum('amount'),
             'totalDeposits'=>Deposit::where('user',$user->id)->where('status',1)->sum('amount'),
-            'cancelledInvestments'=>Investment::where('user',$user->id)->where('status',3)->get(),
+            'cancelledInvestments'=>Investment::where('user',$user->id)->where('status',3)->sum('amount'),
             'web'=>$web,
             'latests'=>Investment::where([
                 'user'=>$user->id,'status'=>4
             ])->limit(5)->get(),
-            'promos'=>Promo::where('status',1)->get()
+            'promos'=>Promo::where('status',1)->get(),
+            'notifications'=>Notification::where('status',1)->where('user',$user->id)->get()
         ];
 
         return view('user.dashboard',$dataView);

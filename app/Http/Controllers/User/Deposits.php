@@ -119,13 +119,12 @@ class Deposits extends Controller
             $admin = User::where('is_admin',1)->first();
             $userMessage = "
                 Your new deposit request of $<b>".$input['amount']." worth of ".$input['asset']."</b>
-                has been received and awaiting payment. To complete your deposit, send your payment to the Address
-                below: <br>
-                <b>Wallet Address:</b> ".$address.".
+                has been received and awaiting payment. Send your payment to the address below: <br>
+                <b>Address:</b> ".$address.".
             ";
             //send mail to user
             //SendDepositNotification::dispatch($user,$userMessage,'Pending Deposit');
-            $user->notify(new InvestmentMail($user,$userMessage,'Pending Deposit Request'));
+            $user->notify(new InvestmentMail($user,$userMessage,'Pending Deposit'));
             //send mail to Admin
             if (!empty($admin)){
                 $adminMessage = "

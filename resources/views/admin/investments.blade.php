@@ -16,8 +16,8 @@
                         <th>Investor</th>
                         <th>Reference</th>
                         <th>Amount</th>
-{{--                        <th>Asset</th>--}}
-{{--                        <th>Address</th>--}}
+                        <th>Asset</th>
+                        <th>Address</th>
                         <th>Source</th>
                         <th>Roi</th>
                         <th>Current profit</th>
@@ -33,8 +33,8 @@
                             <td>{{$option->getInvestor($investment->user)}}</td>
                             <td>{{$investment->reference}}</td>
                             <td>{{number_format($investment->amount,2)}}</td>
-{{--                            <td>{{$investment->asset}}</td>--}}
-{{--                            <td>{{$investment->wallet}}</td>--}}
+                            <td>{{$investment->asset}}</td>
+                            <td>{{$investment->wallet}}</td>
                             <td>
                                 @switch($investment->source)
                                     @case('balance')
@@ -77,8 +77,8 @@
                         <th>Investor</th>
                         <th>Reference</th>
                         <th>Amount</th>
-{{--                        <th>Asset</th>--}}
-{{--                        <th>Address</th>--}}
+                        <th>Asset</th>
+                        <th>Address</th>
                         <th>Source</th>
                         <th>Roi</th>
                         <th>Current profit</th>

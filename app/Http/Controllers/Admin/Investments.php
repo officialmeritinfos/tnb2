@@ -8,6 +8,7 @@ use App\Models\GeneralSetting;
 use App\Models\Investment;
 use App\Models\ReturnType;
 use App\Models\User;
+use App\Models\Withdrawal;
 use App\Notifications\InvestmentMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,13 +52,22 @@ class Investments extends Controller
         $web = GeneralSetting::find(1);
 
         $investment = Investment::where('id',$id)->first();
-        
+
+        $investor = User::where('id',$investment->user)->first();
+
         $type = ReturnType::where('id',$investment->returnType)->first();
-        
+
         $timeReturn = strtotime($type->duration,time());
-        
+
+        $userMessage = "
+                Your investment of <b>$".number_format($investment->amount,2)."</b> has been approved.
+                <p>Happy Investing & Cheers to a successful return!</p>
+            ";
+        //send mail to user
+        $investor->notify(new InvestmentMail($investor, $userMessage, 'Investment approval'));
+
         $investment->status = 4;
-        
+
         $investment->nextReturn = $timeReturn;
 
         $investment->save();
@@ -112,7 +122,7 @@ class Investments extends Controller
             //SendInvestmentNotification::dispatch($investor, $userMessage, 'Investment Completion');
 
             $investor->notify(new InvestmentMail($investor, $userMessage, 'Investment Completion'));
-            
+
             $admin = User::where('is_admin', 1)->first();
             //send mail to Admin
             if (!empty($admin)) {
@@ -127,5 +137,17 @@ class Investments extends Controller
             return back()->with('success', 'Investment completed');
         }
         return back()->with('success', 'Investment completed');
+    }
+
+    public function delete($id)
+    {
+        $withdrawal = Investment::where('id', $id)->first();
+        if (empty($withdrawal)) {
+            return back()->with('error', 'Not found');
+        }
+
+        $withdrawal->delete();
+
+        return redirect()->to(route('admin.investment.index'))->with('success','deleted');
     }
 }

@@ -78,7 +78,7 @@
                     <a class="collapse-item" href="{{url('admin/investors')}}">Investors</a>
                     <a class="collapse-item" href="{{url('admin/withdrawals')}}">Withdrawals</a>
                     <a class="collapse-item" href="{{url('admin/transfers')}}">Transfers</a>
-                    <a class="collapse-item" href="{{url('admin/accounts')}}">Managed Accounts</a>
+{{--                    <a class="collapse-item" href="{{url('admin/accounts')}}">Managed Accounts</a>--}}
                 </div>
             </div>
         </li>
@@ -97,6 +97,7 @@
                     <a class="collapse-item" href="{{url('admin/coins')}}">Wallet</a>
                     <a class="collapse-item" href="{{url('admin/settings')}}">Settings</a>
                     <a class="collapse-item" href="{{route('admin.promo.index')}}">Promos</a>
+                    <a class="collapse-item" href="{{route('admin.notification.index')}}">Notifications</a>
                     <a class="collapse-item" href="{{route('admin.accounts.duration.index')}}">Managed Account Duration</a>
                 </div>
             </div>

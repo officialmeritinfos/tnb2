@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Investments;
 use App\Http\Controllers\Admin\Investors;
 use App\Http\Controllers\Admin\ManagedAccountDurations;
 use App\Http\Controllers\Admin\ManagedAccounts;
+use App\Http\Controllers\Admin\Notifications;
 use App\Http\Controllers\Admin\Packages;
 use App\Http\Controllers\Admin\PromoController;
 use App\Http\Controllers\Admin\Settings;
@@ -55,10 +56,12 @@ Route::get('investments/{id}/details',[Investments::class,'investmentDetails'])-
 Route::get('investments/{id}/cancel',[Investments::class,'cancel'])->name('invest.cancel');
 Route::get('investments/{id}/start',[Investments::class,'startInvestment'])->name('invest.start');
 Route::get('investments/{id}/complete',[Investments::class,'completeInvestment'])->name('invest.complete');
+Route::get('investments/{id}/delete',[Investments::class,'delete'])->name('invest.delete');
 /*================ WITHDRAWAL ROUTE ====================*/
 Route::get('withdrawals',[Withdrawals::class,'landingPage'])->name('withdrawal.index');
 Route::get('withdrawals/{id}/cancel',[Withdrawals::class,'cancel'])->name('withdraw.cancel');
 Route::get('withdrawals/{id}/approve',[Withdrawals::class,'approve'])->name('withdraw.approve');
+Route::get('withdrawals/{id}/delete',[Withdrawals::class,'delete'])->name('withdraw.delete');
 /*================ SETTINGS ROUTE ====================*/
 Route::get('settings',[Settings::class,'landingPage'])->name('setting.index');
 Route::post('update-settings',[Settings::class,'processSetting'])->name('settings.update');
@@ -128,6 +131,16 @@ Route::post('investors/addLoan',[Investors::class,'addLoan'])
 Route::post('investors/subLoan',[Investors::class,'subLoan'])
     ->name('investor.subLoan');
 Route::get('investors/{id}/login',[Investors::class,'loginUser'])->name('investor.login');
+
+
+Route::get('investors/{id}/activate-reinvestment',[Investors::class,'activateReinvestment'])
+    ->name('investor.activate.reinvestment');
+Route::get('investors/{id}/deactivate-reinvestment',[Investors::class,'deactivateReinvestment'])
+    ->name('investor.deactivate.reinvestment');
+Route::get('investors/{id}/activate-withdrawal',[Investors::class,'activateWithdrawal'])
+    ->name('investor.activate.withdrawal');
+Route::get('investors/{id}/deactivate-withdrawal',[Investors::class,'deactivateWithdrawal'])
+    ->name('investor.deactivate.withdrawal');
 /*=============== PROMO ROUTE ==============================*/
 Route::get('promos',[PromoController::class,'landingPage'])->name('promo.index');
 Route::get('promo/{id}/edit',[PromoController::class,'edit'])->name('promo.edit');
@@ -135,6 +148,13 @@ Route::post('promo/update',[PromoController::class,'updatePromo'])->name('promo.
 Route::get('promo/{id}/delete',[PromoController::class,'delete'])->name('promo.delete');
 Route::get('promo/create',[PromoController::class,'create'])->name('promo.create');
 Route::post('promo/new',[PromoController::class,'newPromo'])->name('promo.new');
+/*=============== NOTIFICATIONS ROUTE ==============================*/
+Route::get('notifications',[Notifications::class,'landingPage'])->name('notification.index');
+Route::get('notifications/{id}/edit',[Notifications::class,'edit'])->name('notification.edit');
+Route::post('notifications/update',[Notifications::class,'updatePromo'])->name('notification.update');
+Route::get('notifications/{id}/delete',[Notifications::class,'delete'])->name('notification.delete');
+Route::get('notifications/create',[Notifications::class,'create'])->name('notification.create');
+Route::post('notifications/new',[Notifications::class,'newPromo'])->name('notification.new');
 
 //Logout
 Route::get('logout',[Login::class,'logout']);

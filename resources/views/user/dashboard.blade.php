@@ -15,7 +15,32 @@
         </div>
     @endforeach
 
-    <div class="row g-6">
+    @foreach($notifications as $notification)
+        <div class="ui-kit-card mb-24">
+            <h3>{{$notification->title}}</h3>
+            <div class="alert alert-primary" role="alert">
+                <h4 class="alert-heading">{{$notification->title}}</h4>
+                {!! $notification->content !!}
+            </div>
+        </div>
+    @endforeach
+
+    <div class="row g-6 mt-6">
+        <div class="card">
+            <div class="row justify-content-between card-body">
+                <div class="col-lg-3 col-sm-6 text-start col-6">
+                    <div class="single-today-card d-flex align-items-center">
+                        <a href="{{route('new_deposit')}}" class="btn btn-success rounded-pill">Deposit</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 text-end col-6">
+                    <div class="single-today-card d-flex align-items-center">
+                        <a href="{{route('new_withdrawal')}}" class="btn btn-primary rounded-pill">Withdraw</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         <!-- Card Border Shadow -->
         <div class="col-lg-3 col-sm-6">
             <div class="card card-border-shadow-primary h-100">
@@ -152,7 +177,7 @@
                           ><i class="ti ti-git-fork ti-28px"></i
                               ></span>
                         </div>
-                        <h4 class="mb-0"> {{number_format($ongoingInvestments->count(),2)}}</h4>
+                        <h4 class="mb-0"> ${{number_format($ongoingInvestments,2)}}</h4>
                     </div>
                     <p class="mb-1">Ongoing Investments</p>
                     <p class="mb-0">
@@ -170,7 +195,7 @@
                           ><i class="ti ti-git-fork ti-28px"></i
                               ></span>
                         </div>
-                        <h4 class="mb-0">{{number_format($completedInvestments->count(),2)}}</h4>
+                        <h4 class="mb-0">${{number_format($completedInvestments,2)}}</h4>
                     </div>
                     <p class="mb-1">Completed Investments</p>
                     <p class="mb-0">
@@ -188,7 +213,7 @@
                           ><i class="ti ti-git-fork ti-28px"></i
                               ></span>
                         </div>
-                        <h4 class="mb-0">{{number_format($pendingDeposit->count(),2)}}</h4>
+                        <h4 class="mb-0">${{number_format($pendingDeposit,2)}}</h4>
                     </div>
                     <p class="mb-1">Pending  Deposits</p>
                     <p class="mb-0">
@@ -206,7 +231,7 @@
                           ><i class="ti ti-git-fork ti-28px"></i
                               ></span>
                         </div>
-                        <h4 class="mb-0">{{number_format($pendingWithdrawal->count(),2)}}</h4>
+                        <h4 class="mb-0">${{number_format($pendingWithdrawal,2)}}</h4>
                     </div>
                     <p class="mb-1">Pending Withdrawals</p>
                     <p class="mb-0">
@@ -224,7 +249,7 @@
                           ><i class="ti ti-git-fork ti-28px"></i
                               ></span>
                         </div>
-                        <h4 class="mb-0">{{number_format($withdrawals->count(),2)}}</h4>
+                        <h4 class="mb-0">${{number_format($withdrawals,2)}}</h4>
                     </div>
                     <p class="mb-1">Completed Withdrawals</p>
                     <p class="mb-0">

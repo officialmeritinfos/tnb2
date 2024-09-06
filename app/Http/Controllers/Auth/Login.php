@@ -54,7 +54,7 @@ class Login extends Controller
                 $user->notify(new EmailVerifyMail($user));
                 return back()->with('success','Verification email sent. Please check both your spambox for the mail.');
             }
-            $this->generateUserWallet($user);
+//            $this->generateUserWallet($user);
             //check if user has two factor authentication on
             switch ($user->twoWay){
                 case 1:

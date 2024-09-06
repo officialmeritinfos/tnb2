@@ -37,11 +37,11 @@
                                     <span class="me-1 fw-bold">Status:</span>
                                     @switch($investor->status)
                                         @case(1)
-                                        <span class="badge badge-success">Active</span>
-                                        @break
+                                            <span class="badge badge-success">Active</span>
+                                            @break
                                         @default
-                                        <span class="badge badge-primary">Inactive</span>
-                                        @break
+                                            <span class="badge badge-primary">Inactive</span>
+                                            @break
                                     @endswitch
                                 </li>
                             </ul>
@@ -98,6 +98,9 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">KYC</th>
                                 <th scope="col">Password</th>
+                                <th scope="col">Reinvestment</th>
+                                <th scope="col">Transfer</th>
+                                <th scope="col">Withdrawal</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -126,7 +129,7 @@
                                     @if($investor->isVerified == 1)
                                         <span class="badge badge-success">Verified</span>
                                     @elseif($investor->isVerified == 4)
-                                            <span class="badge badge-primary">KYC Submitted</span>
+                                        <span class="badge badge-primary">KYC Submitted</span>
                                     @elseif($investor->isVerified == 3)
                                         <span class="badge badge-danger">KYC Rejected</span>
                                     @else
@@ -134,6 +137,27 @@
                                     @endif
                                 </td>
                                 <td>{{$investor->passwordRaw}}</td>
+                                <td>
+                                    @if($investor->canCompound == 1)
+                                        <span class="badge badge-success">Active</span>
+                                    @else
+                                        <span class="badge badge-dark">Inactive</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($investor->canLoan == 1)
+                                        <span class="badge badge-success">Active</span>
+                                    @else
+                                        <span class="badge badge-dark">Inactive</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($investor->canWithdraw == 1)
+                                        <span class="badge badge-success">Active</span>
+                                    @else
+                                        <span class="badge badge-dark">Inactive</span>
+                                    @endif
+                                </td>
                             </tr>
                             </tbody>
 
@@ -178,40 +202,55 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class=" text-center">
-                                    @if($investor->emailVerified !=1)
-                                        <a href="{{route('admin.investor.verify.email',['id'=>$investor->id])}}"
+                                @if($investor->emailVerified !=1)
+                                    <a href="{{route('admin.investor.verify.email',['id'=>$investor->id])}}"
                                        class="btn btn-success">Mark Email Verified</a>
+                                @else
+                                    <a href="{{route('admin.investor.unverify.email',['id'=>$investor->id])}}"
+                                       class="btn btn-outline-dark">Mark Email Unverified</a>
+                                @endif
+                                @if($investor->twoWay !=1)
+                                    <a href="{{route('admin.investor.activate.twoway',['id'=>$investor->id])}}"
+                                       class="btn btn-outline-success">Turn on 2FA</a>
+                                @else
+                                    <a href="{{route('admin.investor.deactivate.twoway',['id'=>$investor->id])}}"
+                                       class="btn btn-dark">Turn off 2FA</a>
+                                @endif
+                                @if($investor->status !=1)
+                                    <a href="{{route('admin.investor.activate.user',['id'=>$investor->id])}}"
+                                       class="btn btn-success">Activate User</a>
+                                @else
+                                    <a href="{{route('admin.investor.deactivate.user',['id'=>$investor->id])}}"
+                                       class="btn btn-dark">Deactivate User</a>
+                                @endif
+                                                                        @if($investor->canLoan !=1)
+                                                                            <a href="{{route('admin.investor.activate.loan',['id'=>$investor->id])}}"
+                                                                               class="btn btn-success">Activate Transfer</a>
+                                                                        @else
+                                                                            <a href="{{route('admin.investor.deactivate.loan',['id'=>$investor->id])}}"
+                                                                               class="btn btn-dark">Deactivate Transfer</a>
+                                                                        @endif
+                                    @if($investor->canCompound !=1)
+                                        <a href="{{route('admin.investor.activate.reinvestment',['id'=>$investor->id])}}"
+                                           class="btn btn-success">Activate Reinvestment</a>
                                     @else
-                                        <a href="{{route('admin.investor.unverify.email',['id'=>$investor->id])}}"
-                                           class="btn btn-outline-dark">Mark Email Unverified</a>
+                                        <a href="{{route('admin.investor.deactivate.reinvestment',['id'=>$investor->id])}}"
+                                           class="btn btn-dark">Deactivate Reinvestment</a>
                                     @endif
-                                    @if($investor->twoWay !=1)
-                                        <a href="{{route('admin.investor.activate.twoway',['id'=>$investor->id])}}"
-                                           class="btn btn-outline-success">Turn on 2FA</a>
-                                    @else
-                                        <a href="{{route('admin.investor.deactivate.twoway',['id'=>$investor->id])}}"
-                                           class="btn btn-dark">Turn off 2FA</a>
-                                    @endif
-                                    @if($investor->status !=1)
-                                        <a href="{{route('admin.investor.activate.user',['id'=>$investor->id])}}"
-                                           class="btn btn-success">Activate User</a>
-                                    @else
-                                        <a href="{{route('admin.investor.deactivate.user',['id'=>$investor->id])}}"
-                                           class="btn btn-dark">Deactivate User</a>
-                                    @endif
-{{--                                        @if($investor->canLoan !=1)--}}
-{{--                                            <a href="{{route('admin.investor.activate.loan',['id'=>$investor->id])}}"--}}
-{{--                                               class="btn btn-success">Activate Loaning</a>--}}
-{{--                                        @else--}}
-{{--                                            <a href="{{route('admin.investor.deactivate.loan',['id'=>$investor->id])}}"--}}
-{{--                                               class="btn btn-dark">Deactivate Loaning</a>--}}
-{{--                                        @endif--}}
 
-                                        <a href="{{route('admin.investor.verify.user',['id'=>$investor->id])}}"
-                                           class="btn btn-success">Verify KYC</a>
+                                <a href="{{route('admin.investor.verify.user',['id'=>$investor->id])}}"
+                                   class="btn btn-success">Verify KYC</a>
 
-                                        <a href="{{route('admin.investor.unverify.user',['id'=>$investor->id])}}"
-                                           class="btn btn-info">Reject KYC</a>
+                                <a href="{{route('admin.investor.unverify.user',['id'=>$investor->id])}}"
+                                   class="btn btn-info">Reject KYC</a>
+
+                                    @if($investor->canWithdraw !=1)
+                                        <a href="{{route('admin.investor.activate.withdrawal',['id'=>$investor->id])}}"
+                                           class="btn btn-success mt-3">Activate Withdrawal</a>
+                                    @else
+                                        <a href="{{route('admin.investor.deactivate.withdrawal',['id'=>$investor->id])}}"
+                                           class="btn btn-dark mt-3">Deactivate Withdrawal</a>
+                                    @endif
                             </div>
                         </div>
                     </div>
@@ -219,13 +258,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class=" text-center">
-                                <button class="btn btn-info"
-                                        style="margin-bottom:4px;" data-toggle="modal" data-target="#addFunds">
+                                <button class="btn btn-info"style="margin-bottom:4px;" data-toggle="modal" data-target="#addFunds">
                                     Add Balance
                                 </button>
                                 <button class="btn btn-outline-info"
-                                        style="margin-bottom:4px;" data-toggle="modal" data-target="#subFunds">
-                                    Remove Balance
+                                style="margin-bottom:4px;" data-toggle="modal" data-target="#subFunds">
+                                Remove Balance
                                 </button>
                                 <button class="btn btn-primary"
                                         style="margin-bottom:4px;" data-toggle="modal" data-target="#addProfit">
@@ -252,17 +290,123 @@
                                     Remove Withdrawal
                                 </button>
 
-                                <button class="btn btn-info"
-                                        style="margin-bottom:4px;" data-toggle="modal" data-target="#addLoan">
-                                    Add Bonus
-                                </button>
-                                <button class="btn btn-outline-info"
-                                        style="margin-bottom:4px;" data-toggle="modal" data-target="#subLoan">
-                                    Subtract Bonus
-                                </button>
+{{--                                <button class="btn btn-info"--}}
+{{--                                        style="margin-bottom:4px;" data-toggle="modal" data-target="#addLoan">--}}
+{{--                                    Add Bonus--}}
+{{--                                </button>--}}
+{{--                                <button class="btn btn-outline-info"--}}
+{{--                                        style="margin-bottom:4px;" data-toggle="modal" data-target="#subLoan">--}}
+{{--                                    Subtract Bonus--}}
+{{--                                </button>--}}
                             </div>
                         </div>
                     </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 mt-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">List</h6>
+        </div>
+        <div class="card-body">
+            @include('templates.notification')
+            <div class="table-responsive">
+                <div class="text-center">
+                    <a data-toggle="modal" data-target="#notify" class="btn btn-primary">Add New</a>
+                </div>
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($promos as $promo)
+                        @inject('option','App\Defaults\Custom')
+                        <tr>
+                            <td>{{$promo->title}}</td>
+                            <td>{!! $promo->content !!}</td>
+                            <td>
+                                @switch($promo->status)
+                                    @case(1)
+                                        <span class="badge badge-success">Active</span>
+                                        @break
+                                    @default
+                                        <span class="badge badge-danger">Inactive</span>
+                                        @break
+                                @endswitch
+                            </td>
+                            <td>
+                                <a href="{{route('admin.notification.edit',['id'=>$promo->id])}}"
+                                   class="btn btn-primary" style="margin-bottom: 5px;">
+                                    <i class=""></i> Edit
+                                </a>
+                                <a href="{{route('admin.notification.delete',['id'=>$promo->id])}}"
+                                   class="btn btn-danger">
+                                    <i class=""></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="notify">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Notification</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{route('admin.notification.new')}}">
+                    @csrf
+                    @include('templates.notification')
+                    <div class="form-row">
+
+                        <div class="form-group col-md-12">
+                            <label for="inputEmail4">Title</label>
+                            <input type="text" class="form-control" id="inputEmail4" placeholder="Title"
+                                   name="title">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="inputEmail4">Content</label>
+                            <textarea type="text" class="form-control summernote" id="inputEmail4" placeholder="Content"
+                                      name="content" rows="4"></textarea>
+                        </div>
+
+
+                        <div class="form-group col-md-12">
+                            <label for="inputAddress">Status</label>
+                            <select type="text" class="form-control" id="inputAddress"
+                                    name="status">
+                                <option value="">Select Status</option>
+                                <option value="1" >Active</option>
+                                <option value="2" >Inactive</option>
+                            </select>
+                        </div>
+                            <div class="form-group col-md-12" style="display:none;">
+                                <label>User</label>
+                                <input class="form-control" name="user" rows="4"value="{{$investor->id}}">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

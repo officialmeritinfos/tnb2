@@ -1,23 +1,15 @@
 @extends('home.base')
 @section('content')
-    <!-- Start Page Title Area -->
-    <div class="page-title-area">
-        <div class="container">
-            <div class="page-title-content">
-                <h2>{{$pageName}} </h2>
-                <ul>
-                    <li>
-                        <a href="{{url('/')}}">
-                            Home
-                        </a>
-                    </li>
-                    <li>Pages</li>
-                    <li>{{$pageName}} </li>
-                </ul>
-            </div>
+    <section class="page-title" style="background-image:url({{asset('home/images/background/2.jpg')}})">
+        <div class="auto-container">
+            <h2>{{$pageName}}</h2>
+            <ul class="bread-crumb clearfix">
+                <li><a href="{{url('/')}}">Home</a></li>
+                <li>{{$pageName}}</li>
+            </ul>
         </div>
-    </div>
-    <!-- End Page Title Area -->
+    </section>
+    <!-- End Page Title -->
 
     <!-- END SECTION TEAM -->
     <section class="promo-section ptb-100" style="margin-top: 3rem;">

@@ -29,7 +29,7 @@ class Investments extends Controller
             'web'=>$web,
             'user'=>$user,
             'investments'=>Investment::where('user',$user->id)->paginate(15),
-            'pageName'=>'Deposit Lists',
+            'pageName'=>'Investment Lists',
             'siteName'=>$web->name
         ];
 
@@ -44,7 +44,7 @@ class Investments extends Controller
         $dataView = [
             'web'=>$web,
             'user'=>$user,
-            'pageName'=>'New Deposit',
+            'pageName'=>'New Investment',
             'siteName'=>$web->name,
             'packages'=>Package::where('status',1)->get(),
             'coins'=>Coin::where('status',1)->get(),
@@ -150,13 +150,13 @@ class Investments extends Controller
             //check if admin exists
             $admin = User::where('is_admin',1)->first();
             $userMessage = "
-                    Your new investment package purchase of $<b>".$input['amount']." </b>
-                    has been received, and activated. Your Investment reference Id is <b>".$ref."</b>
+                    Your investment of $".number_format($input['amount'])." was successful, and your returns will
+                    be added according to the cycle.
                 ";
 
             //send mail to user
             //SendInvestmentNotification::dispatch($user,$userMessage,'Investment Initiation');
-            $user->notify(new InvestmentMail($user,$userMessage,'Investment Initiation'));
+            $user->notify(new InvestmentMail($user,$userMessage,'Successful Investment'));
             //send mail to Admin
             if (!empty($admin)){
                 $adminMessage = "
@@ -181,7 +181,7 @@ class Investments extends Controller
         $dataView = [
             'user'=>$user,
             'web'=>$web,
-            'pageName'=>'Deposit Detail',
+            'pageName'=>'Investment Detail',
             'siteName'=>$web->name,
             'investment'=>$investment,
         ];
