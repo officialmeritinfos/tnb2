@@ -37,9 +37,9 @@
         /* Custom CSS for the Float widget */
         .telegram-float-widget {
             position: fixed;
-            left: 10px;
+            right: 10px;
             /* Adjust the left positioning as needed */
-            bottom: 25rem;
+            bottom: 7rem;
             /* Adjust the bottom positioning as needed */
             z-index: 9999;
         }
@@ -81,7 +81,7 @@
             <div class="auto-container">
                 <div class="inner-container d-flex justify-content-between align-items-center flex-wrap">
                     <!-- Logo Box -->
-                    <div class="logo"><a href="{{url('/')}}"><img src="{{asset('home/images/'.$web->logo)}}" style="width: 100px;" alt="" title=""></a></div>
+                    <div class="logo"><a href="{{url('/')}}"><img src="{{asset('home/images/'.$web->logo)}}" style="width: 150px;" alt="" title=""></a></div>
 
                     <!-- Upper Right -->
                     <div class="upper-right d-flex align-items-center flex-wrap">
