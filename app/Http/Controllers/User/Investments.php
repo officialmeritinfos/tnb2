@@ -103,9 +103,9 @@ class Investments extends Controller
                 $balance = $user->balance;
                 $source = 'balance';
                 $newBalance = [
-                    'balance'=>$balance- $input['amount']
+                    'balance'=>$balance
                 ];
-                $status=4;
+                $status=2;
                 break;
             default:
                 $balance = $user->profit;
@@ -117,7 +117,7 @@ class Investments extends Controller
                 break;
         }
 
-        if ($balance < $input['amount']){
+        if ($balance < $input['amount'] && $source=='profit'){
             return back()->with('error','Insufficient balance in  account.');
         }
 
@@ -149,14 +149,26 @@ class Investments extends Controller
             //send notification
             //check if admin exists
             $admin = User::where('is_admin',1)->first();
-            $userMessage = "
+            if ($input['account']==1){
+                $userMessage = "
+                    Your investment request of $".number_format($input['amount'])." has been received. Proceed to making your payment
+                    and your returns will be added.
+                ";
+
+                //send mail to user
+                //SendInvestmentNotification::dispatch($user,$userMessage,'Investment Initiation');
+                $user->notify(new InvestmentMail($user,$userMessage,' Investment Initiation'));
+            }else{
+                $userMessage = "
                     Your investment of $".number_format($input['amount'])." was successful, and your returns will
                     be added according to the cycle.
                 ";
 
-            //send mail to user
-            //SendInvestmentNotification::dispatch($user,$userMessage,'Investment Initiation');
-            $user->notify(new InvestmentMail($user,$userMessage,'Successful Investment'));
+                //send mail to user
+                //SendInvestmentNotification::dispatch($user,$userMessage,'Investment Initiation');
+                $user->notify(new InvestmentMail($user,$userMessage,'Successful Investment'));
+            }
+
             //send mail to Admin
             if (!empty($admin)){
                 $adminMessage = "

@@ -130,7 +130,7 @@
                     </div>
                 </div>
                 <div class="col-lg-12 row">
-                    <img src="{{asset('home/certificate1.jpeg')}}" style="width: auto;">
+                    <img src="g" style="width: auto;">
                 </div>
             </div>
         </div>
