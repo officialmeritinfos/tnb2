@@ -129,7 +129,9 @@
                         </p>
                     </div>
                 </div>
-
+                <div class="col-lg-12 row">
+                    <img src="{{asset('home/certificate1.jpeg')}}" style="width: auto;">
+                </div>
             </div>
         </div>
     </section>

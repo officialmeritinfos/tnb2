@@ -299,7 +299,7 @@
                                     <h4>Certificate info:</h4>
 
                                     <div class="timing">
-                                        <img src="{{asset('home/images/certificate.jpg')}}" style="width:150px;"/>
+                                        <img src="{{asset('certificate.jpeg')}}" style="width:150px;"/>
                                     </div>
                                 </div>
                             </div>
